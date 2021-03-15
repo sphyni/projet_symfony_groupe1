@@ -55,4 +55,4 @@
 /.env.local.php
 /.env.*.local
 /var
-/vendor/
+/vendor/c
