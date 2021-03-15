@@ -2,7 +2,7 @@
 /shelf/
 /workspace.xml
 # Datasource local storage ignored files
-/../../../../../../:\wamp64\www\symfony\projet_symfony\.idea/dataSources/
+/../../../../../:\wamp64\www\projet_symfony_groupe1\.idea/dataSources/
 /dataSources.local.xml
 # Editor-based HTTP Client requests
 /httpRequests/
