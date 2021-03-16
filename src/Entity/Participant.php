@@ -60,7 +60,7 @@ class Participant
 
     /**
      * @var Site
-     * @ORM\ManyToOne   (targetEntity="App\Entity\Sortie", inversedBy="participants"
+     * @ORM\ManyToOne   (targetEntity="App\Entity\Sortie", inversedBy="participants")
      */
     private $site;
 

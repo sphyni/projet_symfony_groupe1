@@ -25,13 +25,13 @@ class Site
 
     /**
      * @var ArrayCollection
-     * @ORM\OneToMany  (targetEntity="App\Entity\Sortie", mappedBy="site"
+     * @ORM\OneToMany  (targetEntity="App\Entity\Sortie", mappedBy="site")
      */
     private $sorties;
 
     /**
      * @var ArrayCollection
-     * @ORM\OneToMany  (targetEntity="App\Entity\Participant", mappedBy="site"
+     * @ORM\OneToMany  (targetEntity="App\Entity\Participant", mappedBy="site")
      */
     private $participants;
 

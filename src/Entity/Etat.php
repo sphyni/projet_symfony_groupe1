@@ -30,7 +30,7 @@ class Etat
 
     /**
      * @var ArrayCollection
-     * @ORM\OneToMany (targetEntity="App\Entity\Sortie", mappedBy="etat"
+     * @ORM\OneToMany (targetEntity="App\Entity\Sortie", mappedBy="etat")
      */
     private $sorties;
 
