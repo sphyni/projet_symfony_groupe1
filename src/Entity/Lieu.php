@@ -45,13 +45,13 @@ class Lieu
 
     /**
      * @var Ville
-     *@ORM\ManyToOne(targetEntity="App\Entity\Ville", inversedBy="lieux")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Ville", inversedBy="lieux")
      */
     private $ville;
 
     /**
      * @var ArrayCollection
-     * @ORM\OneToMany  (targetEntity="App\Entity\Sortie", mappedBy="lieu")
+     * @ORM\OneToMany(targetEntity="App\Entity\Sortie", mappedBy="lieu")
      */
     private $sorties;
 

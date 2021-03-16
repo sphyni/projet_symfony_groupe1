@@ -71,7 +71,7 @@ class Sortie
     private $site;
 
     /**
-     * @ArrayCollection
+     * @var ArrayCollection
      * @ORM\ManyToMany(targetEntity="App\Entity\Participant")
      */
     private $inscrits;

@@ -65,13 +65,13 @@ class Participant
     private $site;
 
     /**
-     * @ArrayCollection
+     * @var ArrayCollection
      * @ORM\ManyToMany(targetEntity="App\Entity\Sortie")
      */
     private $sorties;
 
     /**
-     * @ArrayCollection
+     * @var ArrayCollection
      * @ORM\OneToMany (targetEntity="App\Entity\Sortie", mappedBy="participant")
      */
     private $sortiesOrganises;
