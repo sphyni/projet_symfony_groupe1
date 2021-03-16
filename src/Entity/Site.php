@@ -35,6 +35,38 @@ class Site
      */
     private $participants;
 
+    /**
+     * @return ArrayCollection
+     */
+    public function getSorties(): ArrayCollection
+    {
+        return $this->sorties;
+    }
+
+    /**
+     * @param ArrayCollection $sorties
+     */
+    public function setSorties(ArrayCollection $sorties): void
+    {
+        $this->sorties = $sorties;
+    }
+
+    /**
+     * @return ArrayCollection
+     */
+    public function getParticipants(): ArrayCollection
+    {
+        return $this->participants;
+    }
+
+    /**
+     * @param ArrayCollection $participants
+     */
+    public function setParticipants(ArrayCollection $participants): void
+    {
+        $this->participants = $participants;
+    }
+
     public function getId(): ?int
     {
         return $this->id;

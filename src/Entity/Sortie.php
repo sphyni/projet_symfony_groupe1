@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\SortieRepository;
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -72,13 +73,93 @@ class Sortie
 
     /**
      * @var ArrayCollection
-     * @ORM\ManyToMany(targetEntity="App\Entity\Participant")
+     * @ORM\ManyToMany(targetEntity="App\Entity\Participant", inversedBy="sorties")
      */
     private $inscrits;
 
     /**
-     * @var Participant
-     * @ORM\ManyToOne (targetEntity="App\Entity\Participant", inversedBy="sorties")
+     * @return Etat
+     */
+    public function getEtat(): Etat
+    {
+        return $this->etat;
+    }
+
+    /**
+     * @param Etat $etat
+     */
+    public function setEtat(Etat $etat): void
+    {
+        $this->etat = $etat;
+    }
+
+    /**
+     * @return Lieu
+     */
+    public function getLieu(): Lieu
+    {
+        return $this->lieu;
+    }
+
+    /**
+     * @param Lieu $lieu
+     */
+    public function setLieu(Lieu $lieu): void
+    {
+        $this->lieu = $lieu;
+    }
+
+    /**
+     * @return Site
+     */
+    public function getSite(): Site
+    {
+        return $this->site;
+    }
+
+    /**
+     * @param Site $site
+     */
+    public function setSite(Site $site): void
+    {
+        $this->site = $site;
+    }
+
+    /**
+     * @return ArrayCollection
+     */
+    public function getInscrits(): ArrayCollection
+    {
+        return $this->inscrits;
+    }
+
+    /**
+     * @param ArrayCollection $inscrits
+     */
+    public function setInscrits(ArrayCollection $inscrits): void
+    {
+        $this->inscrits = $inscrits;
+    }
+
+    /**
+     * @return ArrayCollection
+     */
+    public function getOrganisateur(): ArrayCollection
+    {
+        return $this->organisateur;
+    }
+
+    /**
+     * @param ArrayCollection $organisateur
+     */
+    public function setOrganisateur(ArrayCollection $organisateur): void
+    {
+        $this->organisateur = $organisateur;
+    }
+
+    /**
+     * @var ArrayCollection
+     * @ORM\OneToMany  (targetEntity="App\Entity\Participant", mappedBy="sortiesOrganises")
      */
     private $organisateur;
 
