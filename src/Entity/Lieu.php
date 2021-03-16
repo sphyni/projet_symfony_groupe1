@@ -44,10 +44,42 @@ class Lieu
     private $longitude;
 
     /**
-     * @var Ville
-     *@ORM\ManyToOne(targetEntity="App\Entity\Ville", inversedBy="lieux")
+     * @var ArrayCollection
+     *@ORM\OneToMany (targetEntity="App\Entity\Ville", mappedBy="lieux")
      */
     private $ville;
+
+    /**
+     * @return ArrayCollection
+     */
+    public function getVille(): ArrayCollection
+    {
+        return $this->ville;
+    }
+
+    /**
+     * @param ArrayCollection $ville
+     */
+    public function setVille(ArrayCollection $ville): void
+    {
+        $this->ville = $ville;
+    }
+
+    /**
+     * @return ArrayCollection
+     */
+    public function getSorties(): ArrayCollection
+    {
+        return $this->sorties;
+    }
+
+    /**
+     * @param ArrayCollection $sorties
+     */
+    public function setSorties(ArrayCollection $sorties): void
+    {
+        $this->sorties = $sorties;
+    }
 
     /**
      * @var ArrayCollection

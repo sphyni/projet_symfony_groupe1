@@ -59,20 +59,68 @@ class Participant
     private $isActif;
 
     /**
+     * @return Site
+     */
+    public function getSite(): Site
+    {
+        return $this->site;
+    }
+
+    /**
+     * @param Site $site
+     */
+    public function setSite(Site $site): void
+    {
+        $this->site = $site;
+    }
+
+    /**
+     * @return ArrayCollection
+     */
+    public function getSorties(): ArrayCollection
+    {
+        return $this->sorties;
+    }
+
+    /**
+     * @param ArrayCollection $sorties
+     */
+    public function setSorties(ArrayCollection $sorties): void
+    {
+        $this->sorties = $sorties;
+    }
+
+    /**
+     * @return Participant
+     */
+    public function getSortiesOrganises(): Participant
+    {
+        return $this->sortiesOrganises;
+    }
+
+    /**
+     * @param Participant $sortiesOrganises
+     */
+    public function setSortiesOrganises(Participant $sortiesOrganises): void
+    {
+        $this->sortiesOrganises = $sortiesOrganises;
+    }
+
+    /**
      * @var Site
-     * @ORM\ManyToOne   (targetEntity="App\Entity\Sortie", inversedBy="participants")
+     * @ORM\ManyToOne   (targetEntity="App\Entity\Site", inversedBy="participants")
      */
     private $site;
 
     /**
-     * @ArrayCollection
-     * @ORM\ManyToMany(targetEntity="App\Entity\Sortie")
+     * @var ArrayCollection
+     * @ORM\ManyToMany(targetEntity="App\Entity\Sortie", mappedBy="inscrits")
      */
     private $sorties;
 
     /**
-     * @ArrayCollection
-     * @ORM\OneToMany (targetEntity="App\Entity\Sortie", mappedBy="participant")
+     * @var Participant
+     * @ORM\ManyToOne  (targetEntity="App\Entity\Sortie", inversedBy="organisateur")
      */
     private $sortiesOrganises;
 

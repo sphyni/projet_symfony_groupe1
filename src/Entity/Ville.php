@@ -29,10 +29,26 @@ class Ville
     private $codePostal;
 
     /**
-     * @var ArrayCollection
-     * @ORM\OneToMany(targetEntity="App\Entity\Lieu", mappedBy="ville")
+     * @return Ville
      */
-    private $lieu;
+    public function getLieux(): Ville
+    {
+        return $this->lieux;
+    }
+
+    /**
+     * @param Ville $lieux
+     */
+    public function setLieux(Ville $lieux): void
+    {
+        $this->lieux = $lieux;
+    }
+
+    /**
+     * @var Ville
+     * @ORM\ManyToOne (targetEntity="App\Entity\Lieu", inversedBy="ville")
+     */
+    private $lieux;
 
     public function getId(): ?int
     {
