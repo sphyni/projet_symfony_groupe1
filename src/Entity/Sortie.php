@@ -60,18 +60,18 @@ class Sortie
 
     /**
      * @var Lieu
-     * @ORM\ManyToOne  (targetEntity="App\Entity\Lieu", inversedBy="sorties"
+     * @ORM\ManyToOne  (targetEntity="App\Entity\Lieu", inversedBy="sorties")
      */
     private $lieu;
 
     /**
      * @var Site
-     * @ORM\ManyToOne  (targetEntity="App\Entity\Site", inversedBy="sorties"
+     * @ORM\ManyToOne  (targetEntity="App\Entity\Site", inversedBy="sorties")
      */
     private $site;
 
     /**
-     * @ArrayCollection
+     * @var ArrayCollection
      * @ORM\ManyToMany(targetEntity="App\Entity\Participant")
      */
     private $inscrits;

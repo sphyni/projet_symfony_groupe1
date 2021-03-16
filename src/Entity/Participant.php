@@ -60,18 +60,18 @@ class Participant
 
     /**
      * @var Site
-     * @ORM\ManyToOne   (targetEntity="App\Entity\Sortie", inversedBy="participants"
+     * @ORM\ManyToOne   (targetEntity="App\Entity\Sortie", inversedBy="participants")
      */
     private $site;
 
     /**
-     * @ArrayCollection
+     * @var ArrayCollection
      * @ORM\ManyToMany(targetEntity="App\Entity\Sortie")
      */
     private $sorties;
 
     /**
-     * @ArrayCollection
+     * @var ArrayCollection
      * @ORM\OneToMany (targetEntity="App\Entity\Sortie", mappedBy="participant")
      */
     private $sortiesOrganises;
