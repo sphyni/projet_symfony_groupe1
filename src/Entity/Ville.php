@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\VilleRepository;
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -26,6 +27,12 @@ class Ville
      * @ORM\Column(type="string", length=10)
      */
     private $codePostal;
+
+    /**
+     * @var ArrayCollection
+     * @ORM\OneToMany(targetEntity="App\Entity\Lieu", mappedBy="ville")
+     */
+    private $lieu;
 
     public function getId(): ?int
     {

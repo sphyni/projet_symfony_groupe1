@@ -1,1 +1,48 @@
-{% extends 'base.html.twig' %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}sortir.com{% endblock %}</title>
+    {# Run `composer require symfony/webpack-encore-bundle`
+           and uncomment the following Encore helpers to start using Symfony UX #}
+
+
+    {% block stylesheets %}
+        {#{{ encore_entry_link_tags('app') }}#}
+    {% endblock %}
+
+    {% block javascripts %}
+        {#{{ encore_entry_script_tags('app') }}#}
+    {% endblock %}
+</head>
+<body>
+<div class="Page">
+
+    <h1>Sortir.com</h1>
+    <nav class="Navbar Page_Nav">
+        {% block nav %}
+        <a href="#">Accueil</a>
+        <a href="#">Mon profile</a>
+        <a href="#">Se déconnecter</a>
+        {% endblock %}
+    </nav>
+
+    <header class="Header Page_Header">
+        {% block title_page %}{% endblock %}
+    </header>
+
+    <div class="Page_Contents">
+        <main >
+
+        </main>
+        <aside class="Page_Aside">
+
+        </aside>
+    </div>
+
+    <footer class="Footer Page_Footer">
+
+    </footer>
+</div>
+</body>
+</html>

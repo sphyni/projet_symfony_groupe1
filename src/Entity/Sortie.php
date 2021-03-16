@@ -50,7 +50,37 @@ class Sortie
     /**
      * @ORM\Column(type="boolean")
      */
+    private $historique;
+
+    /**
+     * @var Etat
+     * @ORM\ManyToOne (targetEntity="App\Entity\Etat", inversedBy="sorties")
+     */
     private $etat;
+
+    /**
+     * @var Lieu
+     * @ORM\ManyToOne  (targetEntity="App\Entity\Lieu", inversedBy="sorties"
+     */
+    private $lieu;
+
+    /**
+     * @var Site
+     * @ORM\ManyToOne  (targetEntity="App\Entity\Site", inversedBy="sorties"
+     */
+    private $site;
+
+    /**
+     * @ArrayCollection
+     * @ORM\ManyToMany(targetEntity="App\Entity\Participant")
+     */
+    private $inscrits;
+
+    /**
+     * @var Participant
+     * @ORM\ManyToOne (targetEntity="App\Entity\Participant", inversedBy="sorties")
+     */
+    private $organisateur;
 
     public function getId(): ?int
     {
@@ -129,14 +159,14 @@ class Sortie
         return $this;
     }
 
-    public function getEtat(): ?bool
+    public function getHistorique(): ?bool
     {
-        return $this->etat;
+        return $this->historique;
     }
 
-    public function setEtat(bool $etat): self
+    public function setHistorique(bool $historique): self
     {
-        $this->etat = $etat;
+        $this->historique = $historique;
 
         return $this;
     }

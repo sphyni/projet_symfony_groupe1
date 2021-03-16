@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\SiteRepository;
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -21,6 +22,18 @@ class Site
      * @ORM\Column(type="string", length=255)
      */
     private $nom;
+
+    /**
+     * @var ArrayCollection
+     * @ORM\OneToMany  (targetEntity="App\Entity\Sortie", mappedBy="site"
+     */
+    private $sorties;
+
+    /**
+     * @var ArrayCollection
+     * @ORM\OneToMany  (targetEntity="App\Entity\Participant", mappedBy="site"
+     */
+    private $participants;
 
     public function getId(): ?int
     {

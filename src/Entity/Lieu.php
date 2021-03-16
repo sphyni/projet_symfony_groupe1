@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\LieuRepository;
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -41,6 +42,18 @@ class Lieu
      * @ORM\Column(type="float")
      */
     private $longitude;
+
+    /**
+     * @var Ville
+     *@ORM\ManyToOne(targetEntity="App\Entity\Ville", inversedBy="lieux")
+     */
+    private $ville;
+
+    /**
+     * @var ArrayCollection
+     * @ORM\OneToMany  (targetEntity="App\Entity\Sortie", mappedBy="lieu"
+     */
+    private $sorties;
 
     public function getId(): ?int
     {

@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\ParticipantRepository;
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -30,6 +31,16 @@ class Participant
     /**
      * @ORM\Column(type="string", length=255)
      */
+    private $pseudo;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $password;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
     private $telephone;
 
     /**
@@ -45,7 +56,25 @@ class Participant
     /**
      * @ORM\Column(type="boolean")
      */
-    private $isactif;
+    private $isActif;
+
+    /**
+     * @var Site
+     * @ORM\ManyToOne   (targetEntity="App\Entity\Sortie", inversedBy="participants"
+     */
+    private $site;
+
+    /**
+     * @ArrayCollection
+     * @ORM\ManyToMany(targetEntity="App\Entity\Sortie")
+     */
+    private $sorties;
+
+    /**
+     * @ArrayCollection
+     * @ORM\OneToMany (targetEntity="App\Entity\Sortie", mappedBy="participant")
+     */
+    private $sortiesOrganises;
 
     public function getId(): ?int
     {
@@ -72,6 +101,30 @@ class Participant
     public function setPrenom(string $prenom): self
     {
         $this->prenom = $prenom;
+
+        return $this;
+    }
+
+    public function getPseudo(): ?string
+    {
+        return $this->pseudo;
+    }
+
+    public function setPseudo(string $pseudo): self
+    {
+        $this->prenom = $pseudo;
+
+        return $this;
+    }
+
+    public function getPassword(): ?string
+    {
+        return $this->password;
+    }
+
+    public function setPassword(string $password): self
+    {
+        $this->prenom = $password;
 
         return $this;
     }
@@ -112,15 +165,30 @@ class Participant
         return $this;
     }
 
-    public function getIsactif(): ?bool
+    public function getIsActif(): ?bool
     {
         return $this->isactif;
     }
 
-    public function setIsactif(string $isactif): self
+    public function setIsActif(string $isactif): self
     {
         $this->isactif = $isactif;
 
         return $this;
     }
+
+    public function getSalt() {
+        return null;
+    }
+
+    public function eraseCredentials() {
+        return null;
+    }
+
+    public function getRoles() {
+        return ['ROLE_USER'];
+    }
+
+
+
 }
