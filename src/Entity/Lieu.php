@@ -51,7 +51,7 @@ class Lieu
 
     /**
      * @var ArrayCollection
-     * @ORM\OneToMany  (targetEntity="App\Entity\Sortie", mappedBy="lieu"
+     * @ORM\OneToMany  (targetEntity="App\Entity\Sortie", mappedBy="lieu")
      */
     private $sorties;
 
