@@ -39,17 +39,7 @@ class Etat
         return $this->id;
     }
 
-    public function getIdEtat(): ?string
-    {
-        return $this->idEtat;
-    }
-
-    public function setIdEtat(string $idEtat): self
-    {
-        $this->idEtat = $idEtat;
-
-        return $this;
-    }
+    
 
     public function getLibelle(): ?string
     {

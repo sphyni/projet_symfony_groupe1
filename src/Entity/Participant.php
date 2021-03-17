@@ -215,12 +215,12 @@ class Participant
 
     public function getIsActif(): ?bool
     {
-        return $this->isactif;
+        return $this->isActif;
     }
 
-    public function setIsActif(string $isactif): self
+    public function setIsActif(string $isActif): self
     {
-        $this->isactif = $isactif;
+        $this->isActifctif = $isActif;
 
         return $this;
     }
