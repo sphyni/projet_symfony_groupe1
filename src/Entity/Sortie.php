@@ -71,11 +71,7 @@ class Sortie
      */
     private $site;
 
-    /**
-     * @var ArrayCollection
-     * @ORM\ManyToMany(targetEntity="App\Entity\Participant", inversedBy="sorties")
-     */
-    private $inscrits;
+
 
     /**
      * @return Etat
@@ -124,44 +120,6 @@ class Sortie
     {
         $this->site = $site;
     }
-
-    /**
-     * @return ArrayCollection
-     */
-    public function getInscrits(): ?ArrayCollection
-    {
-        return $this->inscrits;
-    }
-
-    /**
-     * @param ArrayCollection $inscrits
-     */
-    public function setInscrits(ArrayCollection $inscrits): void
-    {
-        $this->inscrits = $inscrits;
-    }
-
-    /**
-     * @return ArrayCollection
-     */
-    public function getOrganisateur(): ArrayCollection
-    {
-        return $this->organisateur;
-    }
-
-    /**
-     * @param ArrayCollection $organisateur
-     */
-    public function setOrganisateur(ArrayCollection $organisateur): void
-    {
-        $this->organisateur = $organisateur;
-    }
-
-    /**
-     * @var ArrayCollection
-     * @ORM\OneToMany  (targetEntity="App\Entity\Participant", mappedBy="sortiesOrganises")
-     */
-    private $organisateur;
 
     public function getId(): ?int
     {
