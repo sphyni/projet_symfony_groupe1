@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 
-<title>Hello UsersController!</title>
+<title>{% block title %}sortir.com{% endblock %}</title>
 
 {% block body %}
 <style>
@@ -9,12 +9,23 @@
 </style>
 
 <div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ 'C:/wamp64/www/projet_symfony_groupe1/src/Controller/UsersController.php'|file_link(0) }}">src/Controller/UsersController.php</a></code></li>
-        <li>Your template at <code><a href="{{ 'C:/wamp64/www/projet_symfony_groupe1/templates/users/index.html.twig'|file_link(0) }}">templates/users/index.html.twig</a></code></li>
-    </ul>
-</div>
+
+
+    <form action="{{ url('login') }}" method="post">
+        <p>
+            <label for="login_username">Identifiant</label><br>
+            <input type="text" id="login_username" name="_username" >
+        </p>
+        <p>
+            <label for="login_password">Mot de passe</label><br>
+            <input type="password" id="login_password" name="_password">
+        </p>
+        <p>
+            <input type="submit" name="Connexion">
+        </p>
+    </form>
+
+
+
 {% endblock %}
