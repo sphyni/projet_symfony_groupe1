@@ -3,7 +3,7 @@
 
 namespace App\Controller;
 
-
+use App\Entity\User;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -23,14 +23,12 @@ public function index(): Reponse
     /**
      * @Route("/", name="login")
      */
-    public function login(AuthenticationUtils $authUtils)
-    {
-        $error = $authUtils->getLastAuthenticationError();
-        $lastUsername = $authUtils->getLastUsername();
 
-        return $this->render('users/index.html.twig', array(
-            'last_username' => $lastUsername,
-            'error'         => $error,
-        ));
+    public function login(AuthenticationUtils $utils): Response
+    {
+        return $this->render('users/index.html.twig', [
+            'loginError'      => $utils->getLastAuthenticationError(),
+            'loginUsername'   => $utils->getLastUsername(),
+        ]);
     }
 }
