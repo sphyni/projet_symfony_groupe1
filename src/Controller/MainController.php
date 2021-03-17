@@ -1,24 +1,25 @@
 <?php
 
+
 namespace App\Controller;
+
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
-class UsersController extends AbstractController
+class MainController
 {
-    /**
-     * @Route("/users", name="users")
-     */
-    public function index(): Response
-    {
-        return $this->render('users/index.html.twig', [
-            'controller_name' => 'UsersController',
-        ]);
-    }
-
+/**
+ *@Route("/", name="login")
+ */
+public function index(): Reponse
+{
+    return $this->render('users/index.html.twig', [
+        'controller_name' => 'UsersController',
+    ]);
+}
     /**
      * @Route("/", name="login")
      */
@@ -32,5 +33,4 @@ class UsersController extends AbstractController
             'error'         => $error,
         ));
     }
-
 }
