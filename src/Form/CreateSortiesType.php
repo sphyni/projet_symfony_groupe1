@@ -3,6 +3,7 @@
 namespace App\Form;
 
 use App\Entity\Sortie;
+use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\TimeType;
@@ -42,11 +43,11 @@ class CreateSortiesType extends AbstractType
                 'label'=>'Description et infos : ',
                 'required'=> true,
             ])
-            //->add('historique')
-            //->add('etat')
-            //->add('lieu')
-            //->add('site')
-            //->add('inscrits')
+            ->add('historique',HiddenType::class)
+            //->add('etat',HiddenType::class)
+            //->add('lieu',HiddenType::class)
+            //->add('site',HiddenType::class)
+            //->add('inscrits',HiddenType::class)
         ;
     }
 

@@ -23,25 +23,24 @@ class SortiesController extends AbstractController
     public function createSortie(Request $request,EntityManagerInterface $entityManager): Response
     {
         $sortie = new Sortie;
-        $site = new Site;
-        $lieu = new Lieu;
-        //$ville = new Ville;
+        $site   = new Site;
+        $lieu   = new Lieu;
+       // $ville  = new Ville;
 
         $sortieForm = $this->createForm(CreateSortiesType::class, $sortie);
-        $siteForm = $this->createForm(CreateSiteType::class, $site);
-        $lieuForm = $this->createForm(CreateLieuType::class, $lieu);
-       // $villeForm = $this->createForm(CreateVilleType::class, $ville);
+        $siteForm   = $this->createForm(CreateSiteType::class, $site);
+        $lieuForm   = $this->createForm(CreateLieuType::class, $lieu);
+        //$villeForm  = $this->createForm(CreateVilleType::class, $ville);
 
         $sortieForm->handleRequest($request);
-        //$lieuForm->handleRequest($lieu);
-       // $villeForm->handleRequest($ville);
+
 
         if ($sortieForm->isSubmitted() && $sortieForm->isValid()){
 
             $entityManager->persist($sortie);
             $entityManager->flush();
 
-            //return $this->redirectToRoute('#');
+            return $this->redirectToRoute('sortie');
         }
 
         if ($siteForm->isSubmitted() && $siteForm->isValid()){
@@ -53,18 +52,19 @@ class SortiesController extends AbstractController
             $entityManager->persist($lieu);
             $entityManager->flush();
         }
-        /**
+
+/**
         if ($villeForm->isSubmitted() && $villeForm->isValid()){
             $entityManager->persist($ville);
             $entityManager->flush();
         }
-         **/
+**/
 
         return $this->render('sorties/create-sortie.html.twig', [
-            'sortieForm' => $sortieForm->createView(),
-            'siteForm' => $siteForm->createView(),
-            'lieuForm'=> $lieuForm->createView(),
-            //'villeForm' => $villeForm->createView(),
+            'sortieForm'   => $sortieForm->createView(),
+            'siteForm'     => $siteForm->createView(),
+            'lieuForm'     => $lieuForm->createView(),
+            //'villeForm'    => $villeForm->createView(),
         ]);
     }
 }

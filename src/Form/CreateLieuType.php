@@ -14,7 +14,7 @@ class CreateLieuType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            //->add('idLieu')
+
             ->add('nom',ChoiceType::class, [
                 'label'=>'Lieu : ',
                     'choices'=>['yes'=>true ,'no'=>false,
