@@ -16,6 +16,20 @@ class UsersController extends AbstractController
 {
 
 
+    #[Route('/users', name: 'user_list')]
+    public function list(EntityManagerInterface $entityManager): Response
+    {
+
+
+        $repository = $entityManager->getRepository(Participant::class);
+        $users = $repository->findPublishedOrderedByDateCreated();
+
+
+        return $this->render('users/list.html.twig', [
+            'ideas' => $users
+        ]);
+    }
+
     /**
      * @Route("/profile/{id}", name="profile", requirements={"id":"\d+"})
      */
@@ -30,16 +44,16 @@ class UsersController extends AbstractController
     }
 
     /**
-<<<<<<< HEAD
      * @Route("/monprofile", name="monProfile")
      */
-    public function create(Request $request, EntityManagerInterface $em):response {
+    public function create(Request $request, EntityManagerInterface $em):response
+    {
         $user = new Participant;
         $monProfilForm = $this->createForm(MonProfileType::class, $user);
 
         $monProfilForm->handleRequest($request);
 
-        if($monProfilForm->isSubmitted() && $monProfilForm->isValid()) {
+        if ($monProfilForm->isSubmitted() && $monProfilForm->isValid()) {
 
             $em->persist($user);
             $em->flush();
@@ -47,9 +61,10 @@ class UsersController extends AbstractController
             $this->addFlash('success', 'profile modifié');
             return $this->redirectToRoute('#');
         }
+    }
 
-=======
-     * @Route("/", name="login")
+     /**
+      * @Route("/", name="login")
      */
     public function login(AuthenticationUtils $authUtils)
     {
@@ -60,7 +75,6 @@ class UsersController extends AbstractController
             'last_username' => $lastUsername,
             'error'         => $error,
         ));
->>>>>>> develop
     }
 
 }

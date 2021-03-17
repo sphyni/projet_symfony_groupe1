@@ -1,0 +1,11 @@
+{% extends 'layout.html.twig' %}
+
+{% block main %}
+    <h1>Liste des utilisateur du site</h1>
+
+    <ul>
+        {% for user in users %}
+        <li><a href="{{ url("profile", {'id':user.getId()}) }}">{{ user.getPrenom() }} {{ user.getNom() }}</a> </li>
+        {% endfor %}
+    </ul>
+{% endblock %}

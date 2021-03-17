@@ -220,11 +220,9 @@ class Participant
 
     public function setIsActif(string $isActif): self
     {
-<<<<<<< HEAD
+
         $this->isActif = $isActif;
-=======
-        $this->isActifctif = $isActif;
->>>>>>> develop
+
 
         return $this;
     }

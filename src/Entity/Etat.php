@@ -34,11 +34,6 @@ class Etat
         return $this->id;
     }
 
-<<<<<<< HEAD
-=======
-
-
->>>>>>> develop
     public function getLibelle(): ?string
     {
         return $this->libelle;

@@ -87,13 +87,6 @@ class Lieu
         return $this->id;
     }
 
-<<<<<<< HEAD
-=======
-
-
-
-
->>>>>>> develop
     public function getNom(): ?string
     {
         return $this->nom;
