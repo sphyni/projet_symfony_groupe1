@@ -5,11 +5,12 @@ namespace App\Entity;
 use App\Repository\ParticipantRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * @ORM\Entity(repositoryClass=ParticipantRepository::class)
  */
-class Participant
+class User implements UserInterface
 {
     /**
      * @ORM\Id
@@ -153,14 +154,10 @@ class Participant
         return $this;
     }
 
-    public function getPseudo(): ?string
-    {
-        return $this->pseudo;
-    }
 
-    public function setPseudo(string $pseudo): self
+    public function setUsername(string $username): self
     {
-        $this->prenom = $pseudo;
+        $this->prenom = $username;
 
         return $this;
     }
@@ -238,5 +235,8 @@ class Participant
     }
 
 
-
+    public function getUsername()
+    {
+        return $this->username;
+    }
 }

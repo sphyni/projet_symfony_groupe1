@@ -3,7 +3,7 @@
 
 namespace App\Repository;
 
-
+use App\Entity\Particpant;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
 class UserRepository
@@ -14,10 +14,10 @@ class UserRepository
     public function login(AuthenticationUtils $authUtils)
     {
         $error = $authUtils->getLastAuthenticationError();
-        $lastUsername = $authUtils->getLastUsername();
+        $pseudo = $authUtils->getPseudo();
 
         return $this->render('users/index.html.twig', array(
-            'last_username' => $lastUsername,
+            'pseudo' => $pseudo,
             'error'         => $error,
         ));
     }
