@@ -92,17 +92,9 @@ class Lieu
         return $this->id;
     }
 
-    public function getIdLieu(): ?string
-    {
-        return $this->idLieu;
-    }
 
-    public function setIdLieu(string $idLieu): self
-    {
-        $this->idLieu = $idLieu;
 
-        return $this;
-    }
+
 
     public function getNom(): ?string
     {

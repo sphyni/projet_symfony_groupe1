@@ -221,7 +221,6 @@ class Participant
     public function setIsActif(string $isActif): self
     {
         $this->isActif = $isActif;
-
         return $this;
     }
 
