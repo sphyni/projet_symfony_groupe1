@@ -128,7 +128,7 @@ class Sortie
     /**
      * @return ArrayCollection
      */
-    public function getInscrits(): ArrayCollection
+    public function getInscrits(): ?ArrayCollection
     {
         return $this->inscrits;
     }

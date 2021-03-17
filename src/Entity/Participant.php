@@ -77,7 +77,7 @@ class Participant
     /**
      * @return ArrayCollection
      */
-    public function getSorties(): ArrayCollection
+    public function getSorties(): ?ArrayCollection
     {
         return $this->sorties;
     }
@@ -93,7 +93,7 @@ class Participant
     /**
      * @return Participant
      */
-    public function getSortiesOrganises(): Participant
+    public function getSortiesOrganises(): ?Participant
     {
         return $this->sortiesOrganises;
     }
