@@ -29,6 +29,12 @@ class Ville
     private $codePostal;
 
     /**
+     * @var Ville
+     * @ORM\ManyToOne (targetEntity="App\Entity\Lieu", inversedBy="ville")
+     */
+    private $lieux;
+
+    /**
      * @return Ville
      */
     public function getLieux(): ?Ville
@@ -43,12 +49,6 @@ class Ville
     {
         $this->lieux = $lieux;
     }
-
-    /**
-     * @var Ville
-     * @ORM\ManyToOne (targetEntity="App\Entity\Lieu", inversedBy="ville")
-     */
-    private $lieux;
 
     public function getId(): ?int
     {

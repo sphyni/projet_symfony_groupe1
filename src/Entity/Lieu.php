@@ -45,6 +45,12 @@ class Lieu
     private $ville;
 
     /**
+     * @var ArrayCollection
+     * @ORM\OneToMany (targetEntity="App\Entity\Sortie", mappedBy="lieu")
+     */
+    private $sorties;
+
+    /**
      * @return ArrayCollection
      */
     public function getVille(): ArrayCollection
@@ -75,12 +81,6 @@ class Lieu
     {
         $this->sorties = $sorties;
     }
-
-    /**
-     * @var ArrayCollection
-     * @ORM\OneToMany  (targetEntity="App\Entity\Sortie", mappedBy="lieu")
-     */
-    private $sorties;
 
     public function getId(): ?int
     {

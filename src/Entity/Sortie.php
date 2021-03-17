@@ -3,7 +3,6 @@
 namespace App\Entity;
 
 use App\Repository\SortieRepository;
-use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -55,18 +54,21 @@ class Sortie
 
     /**
      * @var Etat
+     * @ORM\Column(type="integer")
      * @ORM\ManyToOne (targetEntity="App\Entity\Etat", inversedBy="sorties")
      */
     private $etat;
 
     /**
      * @var Lieu
+     * @ORM\Column(type="integer")
      * @ORM\ManyToOne  (targetEntity="App\Entity\Lieu", inversedBy="sorties")
      */
     private $lieu;
 
     /**
      * @var Site
+     * @ORM\Column(type="integer")
      * @ORM\ManyToOne  (targetEntity="App\Entity\Site", inversedBy="sorties")
      */
     private $site;

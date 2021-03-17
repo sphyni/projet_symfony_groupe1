@@ -39,7 +39,7 @@ class SortiesController extends AbstractController
         if ($sortieForm->isSubmitted() && $sortieForm->isValid()){
             $sortie->setEtat(2);
             $sortie->setLieu(1);
-            $sortie->getSite(1);
+            $sortie->getSite(6);
             $sortie->getHistorique(1);
 
             $entityManager->persist($sortie);
