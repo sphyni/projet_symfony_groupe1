@@ -22,7 +22,7 @@ class UsersController extends AbstractController
 
 
         $repository = $entityManager->getRepository(Participant::class);
-        $users = $repository->findPublishedOrderedByDateCreated();
+        $users = $repository->findParticipantsBy();
 
 
         return $this->render('users/list.html.twig', [
