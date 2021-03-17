@@ -19,11 +19,6 @@ class Lieu
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=250)
-     */
-    private $idLieu;
-
-    /**
      * @ORM\Column(type="string", length=250, nullable=true)
      */
     private $nom;
@@ -91,10 +86,6 @@ class Lieu
     {
         return $this->id;
     }
-
-
-
-
 
     public function getNom(): ?string
     {
