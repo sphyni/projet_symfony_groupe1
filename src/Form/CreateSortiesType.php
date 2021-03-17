@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\Sortie;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\TimeType;
@@ -12,6 +13,7 @@ use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\Form\SubmitButton;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class CreateSortiesType extends AbstractType
@@ -44,10 +46,12 @@ class CreateSortiesType extends AbstractType
                 'required'=> true,
             ])
             ->add('historique',HiddenType::class)
-            //->add('etat',HiddenType::class)
-            //->add('lieu',HiddenType::class)
-            //->add('site',HiddenType::class)
+            ->add('etat',HiddenType::class)
+            ->add('lieu',HiddenType::class)
+            ->add('site',HiddenType::class)
             //->add('inscrits',HiddenType::class)
+            ->add('save', SubmitType::class,['label'=>'Enregistrer'])
+            ->add('add', SubmitType::class, ['label'=>'Publier la sortie'])
         ;
     }
 

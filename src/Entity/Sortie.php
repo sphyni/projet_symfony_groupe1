@@ -76,7 +76,7 @@ class Sortie
     /**
      * @return Etat
      */
-    public function getEtat(): Etat
+    public function getEtat(): ?Etat
     {
         return $this->etat;
     }
@@ -92,7 +92,7 @@ class Sortie
     /**
      * @return Lieu
      */
-    public function getLieu(): Lieu
+    public function getLieu(): ?Lieu
     {
         return $this->lieu;
     }
@@ -108,7 +108,7 @@ class Sortie
     /**
      * @return Site
      */
-    public function getSite(): Site
+    public function getSite(): ?Site
     {
         return $this->site;
     }

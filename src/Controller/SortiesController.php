@@ -23,19 +23,24 @@ class SortiesController extends AbstractController
     public function createSortie(Request $request,EntityManagerInterface $entityManager): Response
     {
         $sortie = new Sortie;
-        $site   = new Site;
-        $lieu   = new Lieu;
-       // $ville  = new Ville;
+       // $site   = new Site;
+       // $lieu   = new Lieu;
+       //$ville  = new Ville;
 
         $sortieForm = $this->createForm(CreateSortiesType::class, $sortie);
-        $siteForm   = $this->createForm(CreateSiteType::class, $site);
-        $lieuForm   = $this->createForm(CreateLieuType::class, $lieu);
+        ///$siteForm   = $this->createForm(CreateSiteType::class, $site);
+        //$lieuForm   = $this->createForm(CreateLieuType::class, $lieu);
         //$villeForm  = $this->createForm(CreateVilleType::class, $ville);
 
         $sortieForm->handleRequest($request);
-
+        //$siteForm->handleRequest($request);
+        //$lieuForm->handleRequest($request);
 
         if ($sortieForm->isSubmitted() && $sortieForm->isValid()){
+            $sortie->setEtat(2);
+            $sortie->setLieu(1);
+            $sortie->getSite(1);
+            $sortie->getHistorique(1);
 
             $entityManager->persist($sortie);
             $entityManager->flush();
@@ -43,15 +48,7 @@ class SortiesController extends AbstractController
             return $this->redirectToRoute('sortie');
         }
 
-        if ($siteForm->isSubmitted() && $siteForm->isValid()){
-            $entityManager->persist($site);
-            $entityManager->flush();
-        }
 
-        if ($lieuForm->isSubmitted() && $lieuForm->isValid()){
-            $entityManager->persist($lieu);
-            $entityManager->flush();
-        }
 
 /**
         if ($villeForm->isSubmitted() && $villeForm->isValid()){
@@ -62,9 +59,15 @@ class SortiesController extends AbstractController
 
         return $this->render('sorties/create-sortie.html.twig', [
             'sortieForm'   => $sortieForm->createView(),
-            'siteForm'     => $siteForm->createView(),
-            'lieuForm'     => $lieuForm->createView(),
+            //'siteForm'     => $siteForm->createView(),
+            //'lieuForm'     => $lieuForm->createView(),
             //'villeForm'    => $villeForm->createView(),
         ]);
+    }
+    /**
+     * @Route("/accueil", name="accueil")
+     */
+    public function redirectionAccueil():Response{
+        return $this->render('sorties/accueil.html.twig');
     }
 }
