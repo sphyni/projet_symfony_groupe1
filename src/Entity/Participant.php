@@ -3,13 +3,12 @@
 namespace App\Entity;
 
 use App\Repository\ParticipantRepository;
-use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity(repositoryClass=ParticipantRepository::class)
  */
-class Participant
+class Participant extends User
 {
     /**
      * @ORM\Id
@@ -21,22 +20,12 @@ class Participant
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $nom;
+    private $Nom;
 
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $prenom;
-
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $pseudo;
-
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $password;
+    private $Prenom;
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -46,17 +35,23 @@ class Participant
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $mail;
+    private $Mail;
 
     /**
      * @ORM\Column(type="boolean")
      */
-    private $isAdministrateur;
+    private $isAdmin;
 
     /**
      * @ORM\Column(type="boolean")
      */
     private $isActif;
+
+    /**
+     * @var Site
+     * @ORM\ManyToOne (targetEntity="App\Entity\Site", inversedBy="participants")
+     */
+    private $site;
 
     /**
      * @return Site
@@ -74,55 +69,7 @@ class Participant
         $this->site = $site;
     }
 
-    /**
-     * @return ArrayCollection
-     */
-    public function getSorties(): ArrayCollection
-    {
-        return $this->sorties;
-    }
-
-    /**
-     * @param ArrayCollection $sorties
-     */
-    public function setSorties(ArrayCollection $sorties): void
-    {
-        $this->sorties = $sorties;
-    }
-
-    /**
-     * @return Participant
-     */
-    public function getSortiesOrganises(): Participant
-    {
-        return $this->sortiesOrganises;
-    }
-
-    /**
-     * @param Participant $sortiesOrganises
-     */
-    public function setSortiesOrganises(Participant $sortiesOrganises): void
-    {
-        $this->sortiesOrganises = $sortiesOrganises;
-    }
-
-    /**
-     * @var Site
-     * @ORM\ManyToOne   (targetEntity="App\Entity\Site", inversedBy="participants")
-     */
-    private $site;
-
-    /**
-     * @var ArrayCollection
-     * @ORM\ManyToMany(targetEntity="App\Entity\Sortie", mappedBy="inscrits")
-     */
-    private $sorties;
-
-    /**
-     * @var Participant
-     * @ORM\ManyToOne  (targetEntity="App\Entity\Sortie", inversedBy="organisateur")
-     */
-    private $sortiesOrganises;
+    
 
     public function getId(): ?int
     {
@@ -131,48 +78,24 @@ class Participant
 
     public function getNom(): ?string
     {
-        return $this->nom;
+        return $this->Nom;
     }
 
-    public function setNom(string $nom): self
+    public function setNom(string $Nom): self
     {
-        $this->nom = $nom;
+        $this->Nom = $Nom;
 
         return $this;
     }
 
     public function getPrenom(): ?string
     {
-        return $this->prenom;
+        return $this->Prenom;
     }
 
-    public function setPrenom(string $prenom): self
+    public function setPrenom(string $Prenom): self
     {
-        $this->prenom = $prenom;
-
-        return $this;
-    }
-
-    public function getPseudo(): ?string
-    {
-        return $this->pseudo;
-    }
-
-    public function setPseudo(string $pseudo): self
-    {
-        $this->prenom = $pseudo;
-
-        return $this;
-    }
-
-    public function getPassword(): ?string
-    {
-        return $this->password;
-    }
-
-    public function setPassword(string $password): self
-    {
-        $this->prenom = $password;
+        $this->Prenom = $Prenom;
 
         return $this;
     }
@@ -191,24 +114,24 @@ class Participant
 
     public function getMail(): ?string
     {
-        return $this->mail;
+        return $this->Mail;
     }
 
-    public function setMail(string $mail): self
+    public function setMail(string $Mail): self
     {
-        $this->mail = $mail;
+        $this->Mail = $Mail;
 
         return $this;
     }
 
-    public function getIsAdministrateur(): ?bool
+    public function getIsAdmin(): ?bool
     {
-        return $this->isAdministrateur;
+        return $this->isAdmin;
     }
 
-    public function setIsAdministrateur(bool $isAdministrateur): self
+    public function setIsAdmin(bool $isAdmin): self
     {
-        $this->isAdministrateur = $isAdministrateur;
+        $this->isAdmin = $isAdmin;
 
         return $this;
     }
@@ -218,24 +141,10 @@ class Participant
         return $this->isActif;
     }
 
-    public function setIsActif(string $isActif): self
+    public function setIsActif(bool $isActif): self
     {
         $this->isActif = $isActif;
+
         return $this;
     }
-
-    public function getSalt() {
-        return null;
-    }
-
-    public function eraseCredentials() {
-        return null;
-    }
-
-    public function getRoles() {
-        return ['ROLE_USER'];
-    }
-
-
-
 }

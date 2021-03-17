@@ -31,7 +31,7 @@ class Ville
     /**
      * @return Ville
      */
-    public function getLieux(): Ville
+    public function getLieux(): ?Ville
     {
         return $this->lieux;
     }
