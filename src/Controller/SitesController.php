@@ -13,7 +13,7 @@ class SitesController extends AbstractController
      */
     public function index(): Response
     {
-        return $this->render('sites/index.html.twig', [
+        return $this->render('sites/create-sortie.html.twig', [
             'controller_name' => 'SitesController',
         ]);
     }
