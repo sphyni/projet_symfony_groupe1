@@ -1,5 +1,31 @@
 {% extends 'layout.html.twig' %}
 {% block form %}
+
     <h1>Accueil</h1>
-    <p>Redirection réussite</p>
+
+    <p>
+
+    {{ sortie.getId() }}
+    {{ sortie.getNom() }}
+    {{ sortie.getDateHeureDebut()|date('d-m-y à h:i') }}
+    {{ sortie.getDuree()|date('d-m-y à h:i') }}
+    {{ sortie.getDateLimiteInscription()|date('d-m-y à h:i') }}
+    {{ sortie.getNbInscriptionsMax() }}
+    {{ sortie.getInfosSortie() }}
+    {{ sortie.getHistorique() }}
+
+
+    {{ sortie.etat().getId() }}
+    {{ sortie.etat().getLibelle() }}
+
+    {{ sortie.site().getId() }}
+    {{ sortie.site().getNom() }}
+
+    {{ sortie.lieu().getId() }}
+    {{ sortie.lieu().getNom() }}
+    {{ sortie.lieu().getRue() }}
+    {{ sortie.lieu().getLatitude() }}
+    {{ sortie.lieu().getLongitude() }}
+
+    </p>
 {% endblock %}

@@ -3,7 +3,6 @@
 namespace App\Entity;
 
 use App\Repository\VilleRepository;
-use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
