@@ -27,6 +27,7 @@ class User implements UserInterface
      * @ORM\Column(type="string", length=255)
      */
     private $Password;
+    private $roles;
 
     public function getId(): ?int
     {
@@ -57,9 +58,12 @@ class User implements UserInterface
         return $this;
     }
 
-    public function getRoles()
+    public function getRoles(): array
     {
-        // TODO: Implement getRoles() method.
+        $roles = $this->roles;
+        //Par défaut ROLE_USER :
+        $roles[] = 'ROLE_USER';
+        return array_unique($roles);
     }
 
     public function getSalt()

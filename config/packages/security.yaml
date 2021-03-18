@@ -6,6 +6,12 @@ security:
             entity:
                 class: App\Entity\User
                 property: username
+
+    encoders:
+       App/entity/User:
+           algorithm:  auto
+
+
     firewalls:
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/

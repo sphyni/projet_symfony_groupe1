@@ -50,7 +50,8 @@ class LoginFormAuthenticator extends AbstractFormLoginAuthenticator
         ];
         $request->getSession()->set(
             Security::LAST_USERNAME,
-            $credentials['UserName']
+            $credentials['UserName'],
+            $credentials['password']
         );
 
         return $credentials;
@@ -67,7 +68,7 @@ class LoginFormAuthenticator extends AbstractFormLoginAuthenticator
 
         if (!$user) {
             // fail authentication with a custom error
-            throw new CustomUserMessageAuthenticationException('User Name could not be found.');
+            throw new CustomUserMessageAuthenticationException('identifiant incorrect' );
         }
 
         return $user;
@@ -75,9 +76,11 @@ class LoginFormAuthenticator extends AbstractFormLoginAuthenticator
 
     public function checkCredentials($credentials, UserInterface $user)
     {
-        // Check the user's password or other credentials and return true or false
-        // If there are no credentials to check, you can just return true
-        throw new \Exception('TODO: check the credentials inside '.__FILE__);
+        if ($password =  $credentials['password'] ) {
+            return true;
+        }
+        return false;
+        throw new \Exception('Mot de passe incorrect ');
     }
 
     public function onAuthenticationSuccess(Request $request, TokenInterface $token, string $providerKey)
@@ -86,8 +89,11 @@ class LoginFormAuthenticator extends AbstractFormLoginAuthenticator
             return new RedirectResponse($targetPath);
         }
 
+    return new RedirectResponse($this->urlGenerator->generate('app_login'));
+
+
         // For example : return new RedirectResponse($this->urlGenerator->generate('some_route'));
-        throw new \Exception('TODO: provide a valid redirect inside '.__FILE__);
+      throw new \Exception('TODO: provide a valid redirect inside '.__FILE__);
     }
 
     protected function getLoginUrl()
