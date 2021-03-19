@@ -1,0 +1,41 @@
+{% extends 'layout.html.twig' %}
+
+{# {% block title_page %} {{ user.getPrenom() }} {{ user.getNom() }} {% endblock %} #}
+{% block title_page %} {{ user.getUserName() }} {% endblock %}
+
+
+{% block main %}
+
+<table>
+    <tr>
+        <td>Prénom</td>
+        <td> : </td>
+        <td>{{ user.getPrenom() }}</td>
+    </tr>
+    <tr>
+        <td>Nom</td>
+        <td> : </td>
+        <td>{{ user.getNom() }}</td>
+    </tr>
+    <tr>
+        <td>Téléphone</td>
+        <td> : </td>
+        <td>{{ user.getTelephone() }}</td>
+    </tr>
+    <tr>
+        <td>Email</td>
+        <td> : </td>
+        <td>{{ user.getMail() }}</td>
+    </tr>
+    <tr>
+        <td>Ville de rattachement</td>
+        <td> : </td>
+        <td>{{ user.site.getNom() }}</td>
+    </tr>
+
+    <a class="button" href="#">retour</a>
+
+
+</table>
+
+{% endblock %}

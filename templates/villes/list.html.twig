@@ -1,0 +1,27 @@
+{% extends 'layout.html.twig' %}
+
+
+{% block title_page %}
+   gérer les villes
+{% endblock %}
+
+{% block main %}
+
+    <table>
+        {% for ville in villes %}
+
+
+            <tr>
+                <td>{{ ville.getNom() }}</td>
+                <td>{{ ville.getCodePostal() }}</td>
+                <td><a href="#">Modifier</a> - <a href="#">Supprimer</a> </td>
+            </tr>
+
+
+        {% endfor %}
+
+        <tr>
+            <td></td>
+        </tr>
+    </table>
+{% endblock %}

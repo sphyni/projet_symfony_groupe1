@@ -35,7 +35,8 @@
         "symfony/web-profiler-bundle": "5.2.*",
         "symfony/yaml": "*",
         "twig/extra-bundle": "^2.12|^3.0",
-        "twig/twig": "^2.12|^3.0"
+        "twig/twig": "^2.12|^3.0",
+      "ext-http": "*"
     },
     "config": {
         "optimize-autoloader": true,
@@ -45,6 +46,15 @@
         "sort-packages": true,
         "secure-http": false
     },
+    "repositories":[
+        {
+            "type": "composer",
+            "url": "http://nexus.depot-eni.fr:8081/repository/composer-proxy-packagist.org/"
+        },
+        {
+            "packagist.org": false
+        }
+    ],
 
     "autoload": {
         "psr-4": {
