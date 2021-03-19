@@ -81,11 +81,7 @@ class LoginFormAuthenticator extends AbstractFormLoginAuthenticator
     {
 
 
-
-       dump($user,$credentials);
-
-        dd($this->passwordEncoder->isPasswordValid($user, $credentials['password']));
-
+        return $this->passwordEncoder->isPasswordValid($user, $credentials['password']);
 
 
         // Check the user's password or other credentials and return true or false
