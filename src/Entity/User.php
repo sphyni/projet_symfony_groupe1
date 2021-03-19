@@ -7,15 +7,11 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
-<<<<<<< HEAD
  * @ORM\Entity()
  * @ORM\InheritanceType("JOINED")
  * @ORM\DiscriminatorColumn(name="type", type="string")
  * @ORM\DiscriminatorMap({"participant"="Participant", "organisateur" = "Organisateur"})
-=======
- * @ORM\Entity(repositoryClass=UserRepository::class)
  * @UniqueEntity(fields={"username"}, message="There is already an account with this username")
->>>>>>> f0e45f07e191f70c7789ed7e709f90cb45db72ab
  */
 abstract class User implements UserInterface
 {
@@ -27,12 +23,12 @@ abstract class User implements UserInterface
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=100, unique=true)
      */
     private $username;
 
     /**
-     * @ORM\Column(type="string", length=255, unique=true)
+     * @ORM\Column(type="string", length=255)
      */
     private $password;
     private $roles;
@@ -42,11 +38,7 @@ abstract class User implements UserInterface
         return $this->id;
     }
 
-<<<<<<< HEAD
-    public function getUserName()
-=======
     public function getUsername(): ?string
->>>>>>> f0e45f07e191f70c7789ed7e709f90cb45db72ab
     {
         return $this->username;
     }

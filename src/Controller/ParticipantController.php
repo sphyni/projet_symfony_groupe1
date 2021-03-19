@@ -67,12 +67,12 @@ class ParticipantController extends AbstractController
     }
 
     /**
-     * @Route("/", name="login")
+     * @Route("/", name="app_login")
      */
 
     public function login(AuthenticationUtils $utils): Response
     {
-        return $this->render('users/index.html.twig', [
+        return $this->render('security/login.html.twig', [
             'loginError'      => $utils->getLastAuthenticationError(),
             'loginUsername'   => $utils->getLastUsername(),
         ]);
