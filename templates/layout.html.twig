@@ -28,12 +28,12 @@
     </nav>
 
     <header class="Header Page_Header">
-        {% block title_page %}{% endblock %}
+        <h2>{% block title_page %}{% endblock %}</h2>
     </header>
 
     <div class="Page_Contents">
         <main >
-
+            {% block main %}{% endblock  %}
         </main>
         <aside class="Page_Aside">
 

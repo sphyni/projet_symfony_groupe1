@@ -1,11 +1,14 @@
 {% extends 'layout.html.twig' %}
 
+{% block title_page %}
+    Liste des utilisateurs du site !
+{% endblock %}
+
 {% block main %}
 
     <ul>
-    {% for user in users %}
-        <li><a href="{{ url("idea_details", {'id':user.getId()}) }}"> {{ user.getPrenom() }} </a></li>
-    {% endfor %}
-
-
+        {% for user in users %}
+            <li><a href="{{ url("profile", {'id':user.getId()}) }}">{{ user.getPrenom() }} {{ user.getNom() }}</a> </li>
+        {% endfor %}
+    </ul>
 {% endblock %}
