@@ -1,17 +1,13 @@
 security:
     # https://symfony.com/doc/current/security.html#where-do-users-come-from-user-providers
     providers:
-        users_in_memory: { memory: null }
-        db_provider:
+        users_in_memory:
             entity:
                 class: App\Entity\User
                 property: username
-
     encoders:
-       App/entity/User:
-           algorithm:  auto
-
-
+       App\Entity\User:
+            algorithm:  auto
     firewalls:
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
@@ -29,7 +25,6 @@ security:
                 secret: "%kernel.secret%"
                 lifetime: 7776000 # 90jours
                 path: /
-
             logout:
                 path: user_logout
                 target: home
