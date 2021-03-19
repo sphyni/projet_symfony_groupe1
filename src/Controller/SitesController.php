@@ -15,28 +15,31 @@ class SitesController extends AbstractController
     /**
      * @Route("/sites", name="sites")
      */
-    public function listAndCreate(Request $request, EntityManagerInterface $em): Response
+    public function listAnCreate(Request $request, EntityManagerInterface $em, EntityManagerInterface $entityManager): response
     {
+
+
         $repository = $em->getRepository(Site::class);
         $allSites = $repository->findAll();
 
-
         $site = new Site;
-        $SiteForm = $this->createForm(GestionSiteType::class, $site);
+        $siteForm = $this->createForm(GestionSiteType::class, $site);
+//dd($site);
 
-        $SiteForm->handleRequest($request);
-
-        if ($SiteForm->isSubmitted() && $SiteForm->isValid()) {
-            $em->persist($site);
-            $em->flush();
+        $siteForm->handleRequest($request);
+//dd($site);
+        if ($siteForm->isSubmitted() && $siteForm->isValid()) {
+            $entityManager->persist($site);
+            $entityManager->flush();
 
             $this->addFlash('success', 'site ajouté');
             return  $this->redirectToRoute('sites');
         }
-
+//dd($site);
         return $this->render('sites/list.html.twig', [
             'sites' => $allSites,
             'controller_name' => 'SitesController',
+            'siteForm' => $siteForm->createView(),
         ]);
     }
 
