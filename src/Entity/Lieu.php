@@ -82,16 +82,26 @@ class Lieu
      */
     private $sorties;
 
+    /**
+     * @return int|null
+     */
     public function getId(): ?int
     {
         return $this->id;
     }
 
+    /**
+     * @return string|null
+     */
     public function getNom(): ?string
     {
         return $this->nom;
     }
 
+    /**
+     * @param string|null $nom
+     * @return $this
+     */
     public function setNom(?string $nom): self
     {
         $this->nom = $nom;
@@ -99,11 +109,18 @@ class Lieu
         return $this;
     }
 
+    /**
+     * @return string|null
+     */
     public function getRue(): ?string
     {
         return $this->rue;
     }
 
+    /**
+     * @param string|null $rue
+     * @return $this
+     */
     public function setRue(?string $rue): self
     {
         $this->rue = $rue;
@@ -111,11 +128,18 @@ class Lieu
         return $this;
     }
 
+    /**
+     * @return float|null
+     */
     public function getLatitude(): ?float
     {
         return $this->latitude;
     }
 
+    /**
+     * @param float|null $latitude
+     * @return $this
+     */
     public function setLatitude(?float $latitude): self
     {
         $this->latitude = $latitude;
@@ -123,11 +147,18 @@ class Lieu
         return $this;
     }
 
+    /**
+     * @return float|null
+     */
     public function getLongitude(): ?float
     {
         return $this->longitude;
     }
 
+    /**
+     * @param float $longitude
+     * @return $this
+     */
     public function setLongitude(float $longitude): self
     {
         $this->longitude = $longitude;

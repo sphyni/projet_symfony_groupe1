@@ -29,16 +29,26 @@ class Etat
      */
     private $sorties;
 
+    /**
+     * @return int|null
+     */
     public function getId(): ?int
     {
         return $this->id;
     }
 
+    /**
+     * @return string|null
+     */
     public function getLibelle(): ?string
     {
         return $this->libelle;
     }
 
+    /**
+     * @param string|null $libelle
+     * @return $this
+     */
     public function setLibelle(?string $libelle): self
     {
         $this->libelle = $libelle;

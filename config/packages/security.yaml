@@ -34,8 +34,8 @@ security:
                 lifetime: 7776000 # 90jours
                 path: /
             logout:
-                path: user_logout
-                target: home
+                path: /logout
+                target: /
             guard:
                 authenticators:
                     - App\Security\LoginFormAuthenticator

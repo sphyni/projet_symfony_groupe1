@@ -31,6 +31,9 @@ abstract class User implements UserInterface
      * @ORM\Column(type="string", length=255)
      */
     private $password;
+    /**
+     * @var
+     */
     private $roles;
 
     public function getId()

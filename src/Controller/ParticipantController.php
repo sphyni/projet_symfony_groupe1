@@ -12,10 +12,18 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
+/**
+ * Class ParticipantController
+ * @package App\Controller
+ */
 class ParticipantController extends AbstractController
 {
 
 
+    /**
+     * @param EntityManagerInterface $entityManager
+     * @return Response
+     */
     #[Route('/users', name: 'user_list')]
     public function list(EntityManagerInterface $entityManager): Response
     {
@@ -45,6 +53,7 @@ class ParticipantController extends AbstractController
         ]);
 
     }
+
 
     /**
      * @Route("/monprofile", name="monProfile")
