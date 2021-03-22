@@ -14,7 +14,7 @@ class ProfilEditType extends AbstractType
         $builder
             ->add('username')
             ->add('password')
-            ->add(child: 'confirmation password')
+            ->add( 'confirmation password')
             ->add('Nom')
             ->add('Prenom')
             ->add('telephone')
