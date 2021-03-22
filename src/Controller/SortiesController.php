@@ -7,6 +7,7 @@ use App\Entity\Site;
 use App\Entity\Lieu;
 use App\Entity\Ville;
 use App\Entity\Sortie;
+use App\Form\CreateAccueilType;
 use App\Form\CreateEtatType;
 use App\Form\CreateLieuType;
 use App\Form\CreateSiteType;
@@ -67,17 +68,44 @@ class SortiesController extends AbstractController
             //'villeForm'    => $villeForm->createView(),
         ]);
     }
-
     /**
      * @Route("/accueil", name="accueil")
      */
-    public function findSortie(EntityManagerInterface $entityManager):Response{
+    public function createSearch(Request $request, EntityManagerInterface $entityManager): Response{
+        $sortie = new Sortie;
+
+        $searchForm = $this->createForm(CreateAccueilType::class, $sortie);
+
+        $searchForm->handleRequest($request);
+
+        if ($searchForm->isSubmitted() && $searchForm->isValid()){
+            $entityManager->persist($searchForm);
+            $entityManager->flush();
+
+        }
+        return $this->render('sorties/accueil.html.twig',[
+            'search_Form' => $searchForm->createView()
+        ]);
+
+    }
+
+    /**
+     * @Route("/accueil", name="accueil")
+
+    public function accueilSortie(int $site, EntityManagerInterface $entityManager):Response{
+       //$repository = $entityManager->getRepository(Sortie::class);
+       // $sortie     = $repository->find(1);
         $repository = $entityManager->getRepository(Sortie::class);
-        $sortie     = $repository->find(1);
+        $searchSite =$repository->findBySite($site);
 
         return $this->render('sorties/accueil.html.twig', [
-            'sortie' => $sortie,
+            //'sortie' => $sortie,
+            'searchSite' => $searchSite,
         ]);
     }
+     **/
+    /**
+     * @Route("/modifier/{$id}")
+     */
 
 }

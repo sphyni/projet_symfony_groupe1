@@ -2,18 +2,12 @@
 {% block title_page %}
     <h1>Créer une sortie</h1>
 {% endblock %}
-{% block form %}
+{% block main %}
     <div class="form_sortie">
     {{ form_start(sortieForm) }}
     {{ form_widget(sortieForm) }}
-        {{ form_start(etatForm) }}
-        {{ form_widget(etatForm) }}
-        {{ form_end(etatForm) }}
-
-    <button><a href="{{ path('accueil') }}">Annuler</a></button>
+        <button><a href="{{ path('accueil') }}">Annuler</a></button>
     {{ form_end(sortieForm) }}
     </div>
-    <div class="form_etat">
 
-    </div>
 {% endblock %}

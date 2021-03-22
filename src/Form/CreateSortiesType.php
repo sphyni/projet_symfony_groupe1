@@ -2,7 +2,7 @@
 
 namespace App\Form;
 
-use App\Entity\Etat;
+use App\Form\CreateEtatType;
 use App\Entity\Sortie;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
@@ -19,7 +19,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class CreateSortiesType extends AbstractType
 {
-    public function buildForm(FormBuilderInterface $builder, array $options)
+    public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
             ->add('nom',TextType::class, [
@@ -47,18 +47,12 @@ class CreateSortiesType extends AbstractType
                 'required'=> true,
             ])
             ->add('historique',HiddenType::class)
-            ->add('etat', ChoiceType::class,[
-                'label' => 'Etat de la sortie : ',
-                'Choice'=> [
-                    'Créer' => 1,
-                    'Ouverture' => 2,
-            ]
-            ])
+            ->add('etat', CreateEtatType::class)
             ->add('lieu',HiddenType::class)
             ->add('site',HiddenType::class)
             //->add('inscrits',HiddenType::class)
             //->add('save', SubmitType::class,['label'=>'Enregistrer'])
-            //->add('add', SubmitType::class, ['label'=>'Publier la sortie'])
+            ->add('add', SubmitType::class, ['label'=>'Publier la sortie'])
         ;
     }
 

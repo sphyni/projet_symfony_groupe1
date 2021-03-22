@@ -55,7 +55,9 @@ class Sortie
 
     /**
      * @var Etat
-     * @ORM\ManyToOne (targetEntity="App\Entity\Etat", inversedBy="sorties")
+     * @ORM\ManyToOne (targetEntity="App\Entity\Etat", inversedBy="sorties", cascade={"persist"})
+     * @Assert\Type(type="App\Entity\Etat")
+     * @Assert\Valid
      */
     private $etat;
 
@@ -84,7 +86,7 @@ class Sortie
     /**
      * @param Etat $etat
      */
-    public function setEtat(Etat $etat): void
+    public function setEtat(?Etat $etat): void
     {
         $this->etat = $etat;
     }
