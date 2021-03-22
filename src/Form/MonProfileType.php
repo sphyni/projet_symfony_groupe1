@@ -21,7 +21,7 @@ class MonProfileType extends AbstractType
             ->add('password', RepeatedType::class, [
                 'type'            => PasswordType::class,
                 'invalid_message' => 'confirmation du mot de passe ne correspond pas',
-                'first_options'   => ['label' => 'Mot de passe'],
+                'first_options'   => ['label' => 'password'],
                 'second_options'  => ['label' => 'confirmation'],
             ])
             ->add('telephone')

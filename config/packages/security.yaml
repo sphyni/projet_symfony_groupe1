@@ -1,6 +1,16 @@
 security:
     # https://symfony.com/doc/current/security.html#where-do-users-come-from-user-providers
+    encoders:
+       App\Entity\User:
+            algorithm:  auto
     providers:
+        chain_provider:
+            chain:
+                providers: [app_participant_provider]
+        app_participant_provider:
+            entity:
+                class: App\Entity\Participant
+                property: UserName
         users_in_memory: { memory: null }
         db_provider:
             entity:
@@ -14,7 +24,7 @@ security:
             pattern: ^/
             anonymous: true
             lazy: true
-            provider: users_in_memory
+            provider: chain_provider
             form_login:
                 login_path: user_login
                 check_path: user_login
@@ -23,10 +33,12 @@ security:
                 secret: "%kernel.secret%"
                 lifetime: 7776000 # 90jours
                 path: /
-
             logout:
                 path: user_logout
                 target: home
+            guard:
+                authenticators:
+                    - App\Security\LoginFormAuthenticator
 
             # activate different ways to authenticate
             # https://symfony.com/doc/current/security.html#firewalls-authentication

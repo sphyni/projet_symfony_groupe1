@@ -11,24 +11,16 @@ use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
 class MainController
 {
+
+
 /**
- *@Route("/", name="login")
+ *@Route("/", name="app_login")
  */
-public function index(): Reponse
+public function login(): Reponse
 {
-    return $this->render('users/index.html.twig', [
-        'controller_name' => 'UsersController',
+    return $this->render('security/login.html.twig', [
+        'controller_name' => 'SecurityController',
     ]);
 }
-    /**
-     * @Route("/", name="login")
-     */
 
-    public function login(AuthenticationUtils $utils): Response
-    {
-        return $this->render('users/index.html.twig', [
-            'loginError'      => $utils->getLastAuthenticationError(),
-            'loginUsername'   => $utils->getLastUsername(),
-        ]);
-    }
 }

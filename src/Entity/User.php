@@ -2,14 +2,18 @@
 
 namespace App\Entity;
 
-use App\Repository\UserRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
- * @ORM\Entity(repositoryClass=UserRepository::class)
+ * @ORM\Entity()
+ * @ORM\InheritanceType("JOINED")
+ * @ORM\DiscriminatorColumn(name="type", type="string")
+ * @ORM\DiscriminatorMap({"participant"="Participant", "organisateur" = "Organisateur"})
+ * @UniqueEntity(fields={"username"}, message="There is already an account with this username")
  */
-class User implements UserInterface
+abstract class User implements UserInterface
 {
     /**
      * @ORM\Id
@@ -19,52 +23,56 @@ class User implements UserInterface
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=100, unique=true)
      */
-    private $UserName;
+    private $username;
 
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $Password;
+    private $password;
+    private $roles;
 
-    public function getId(): ?int
+    public function getId()
     {
         return $this->id;
     }
 
-    public function getUserName(): ?string
+    public function getUsername(): ?string
     {
-        return $this->UserName;
+        return $this->username;
     }
 
-    public function setUserName(string $UserName): self
+    public function setUsername(string $username): self
     {
-        $this->UserName = $UserName;
+        $this->username = $username;
 
         return $this;
     }
 
-    public function getPassword(): ?string
+    public function getPassword()
     {
-        return $this->Password;
+        return $this->password;
     }
 
-    public function setPassword(string $Password): self
+    public function setPassword(string $password): self
     {
-        $this->Password = $Password;
+        $this->password = $password;
 
         return $this;
     }
 
-    public function getRoles()
+    public function getRoles(): array
     {
-        // TODO: Implement getRoles() method.
+        $roles = $this->roles;
+        //Par défaut ROLE_USER :
+        $roles[] = 'ROLE_USER';
+        return array_unique($roles);
     }
 
     public function getSalt()
     {
-        // TODO: Implement getSalt() method.
+       return null;
     }
 
     public function eraseCredentials()

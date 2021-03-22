@@ -10,12 +10,6 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Participant extends User
 {
-    /**
-     * @ORM\Id
-     * @ORM\GeneratedValue
-     * @ORM\Column(type="integer")
-     */
-    private $id;
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -56,7 +50,7 @@ class Participant extends User
     /**
      * @return Site
      */
-    public function getSite(): Site
+    public function getSite()
     {
         return $this->site;
     }
@@ -64,17 +58,12 @@ class Participant extends User
     /**
      * @param Site $site
      */
-    public function setSite(Site $site): void
+    public function setSite( $site)
     {
         $this->site = $site;
     }
 
     
-
-    public function getId(): ?int
-    {
-        return $this->id;
-    }
 
     public function getNom(): ?string
     {

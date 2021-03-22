@@ -19,6 +19,15 @@ class ParticipantRepository extends ServiceEntityRepository
         parent::__construct($registry, Participant::class);
     }
 
+
+    public function findParticipants()
+    {
+        return $this->createQueryBuilder('p')
+            -> andWhere('p.isActif =1')
+            -> getQuery()
+            -> getResult();
+    }
+
     // /**
     //  * @return Participant[] Returns an array of Participant objects
     //  */
@@ -35,6 +44,16 @@ class ParticipantRepository extends ServiceEntityRepository
         ;
     }
     */
+
+    public function findOneById($id): ?Participant
+    {
+        return $this->createQueryBuilder('p')
+            ->andWhere('p.id = :id')
+            ->setParameter('id', $id)
+            ->getQuery()
+            ->getOneOrNullResult()
+            ;
+    }
 
     /*
     public function findOneBySomeField($value): ?Participant
