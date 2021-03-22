@@ -1,12 +1,17 @@
 {% extends 'layout.html.twig' %}
 
 {# {% block title_page %} {{ user.getPrenom() }} {{ user.getNom() }} {% endblock %} #}
-{% block title_page %} {{ user.getUserName() }} {% endblock %}
+{% block title_page %} {{ user.getUsername() }} {% endblock %}
 
 
 {% block main %}
 
 <table>
+    <tr>
+        <td>pseudo</td>
+        <td> : </td>
+        <td>{{ user.getUsername() }}</td>
+    </tr>
     <tr>
         <td>Prénom</td>
         <td> : </td>
@@ -35,7 +40,9 @@
 </table>
 
 <div class="button">
+    {% if(user.getusername() == app.user.username) %}
     <button type="button" id="btnModifier" class="button btn-sm" href="#"  >Modifier</button>
+    {% endif %}
     <button type="button" id="btnRetour" class="button btn-sm" href="#">Retour</button>
 </div>
 

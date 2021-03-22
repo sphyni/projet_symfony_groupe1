@@ -6,6 +6,9 @@
 
 {% block main %}
 
+    <p> username : {{ app.user.username }}</p>
+
+
     <ul>
         {% for user in users %}
             <li><a href="{{ url("profile", {'id':user.getId()}) }}">{{ user.getPrenom() }} {{ user.getNom() }}</a> </li>
