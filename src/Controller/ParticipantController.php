@@ -71,10 +71,35 @@ class ParticipantController extends AbstractController
             $em->flush();
 
             $this->addFlash('success', 'profile modifié');
-            return $this->redirectToRoute('#');
+            return $this->redirectToRoute('users');
         }
     }
+    /**
+     * @Route("/modify", name="modify")
+     */
+    public function profileEdit(Request $request, EntityManagerInterface $em, FileUploader $fu) : Response
+    {
+        $user = $this->getParticipant();
 
+        $form = $this->createForm(AccountType::class, $user);
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            //dump($form->getData());exit;
+
+
+            $em->persist($user);
+            $em->flush();
+
+            return $this->redirectToRoute('home');
+        }
+
+        return $this->render('user/details.html.twig', [
+            'form'=> $form->createView(),
+            'user'=>$user,
+        ]);
+    }
     /**
      * @Route("/", name="app_login")
      */

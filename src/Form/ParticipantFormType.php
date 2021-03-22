@@ -25,18 +25,18 @@ class ParticipantFormType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('username')
-            ->add('plainPassword', PasswordType::class, [
+            ->add('identifiant')
+            ->add('mot de passe', PasswordType::class, [
                 // instead of being set onto the object directly,
                 // this is read and encoded in the controller
                 'mapped' => false,
                 'constraints' => [
                     new NotBlank([
-                        'message' => 'Please enter a password',
+                        'message' => 'Veuillez mettre un mot de passe',
                     ]),
                     new Length([
                         'min' => 6,
-                        'minMessage' => 'Your password should be at least {{ limit }} characters',
+                        'minMessage' => 'Le mot de passe doit comporter 6 caracteres minium',
                         // max length allowed by Symfony for security reasons
                         'max' => 4096,
                     ]),
@@ -49,11 +49,11 @@ class ParticipantFormType extends AbstractType
             ->add('isAdmin')
             ->add('isActif')
 
-            ->add('agreeTerms', CheckboxType::class, [
+            ->add('Accepter les termes', CheckboxType::class, [
                 'mapped' => false,
                 'constraints' => [
                     new IsTrue([
-                        'message' => 'You should agree to our terms.',
+                        'message' => 'Veuillez accepter les termes',
                     ]),
                 ],
             ])
