@@ -14,9 +14,25 @@ use Doctrine\Persistence\ManagerRegistry;
  */
 class ParticipantRepository extends ServiceEntityRepository
 {
+    /**
+     * ParticipantRepository constructor.
+     * @param ManagerRegistry $registry
+     */
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Participant::class);
+    }
+
+
+    /**
+     * @return int|mixed|string
+     */
+    public function findParticipants()
+    {
+        return $this->createQueryBuilder('p')
+            -> andWhere('p.isActif =1')
+            -> getQuery()
+            -> getResult();
     }
 
     // /**
@@ -35,6 +51,21 @@ class ParticipantRepository extends ServiceEntityRepository
         ;
     }
     */
+
+    /**
+     * @param $id
+     * @return Participant|null
+     * @throws \Doctrine\ORM\NonUniqueResultException
+     */
+    public function findOneById($id): ?Participant
+    {
+        return $this->createQueryBuilder('p')
+            ->andWhere('p.id = :id')
+            ->setParameter('id', $id)
+            ->getQuery()
+            ->getOneOrNullResult()
+            ;
+    }
 
     /*
     public function findOneBySomeField($value): ?Participant

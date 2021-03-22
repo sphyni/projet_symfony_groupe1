@@ -10,12 +10,6 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Participant extends User
 {
-    /**
-     * @ORM\Id
-     * @ORM\GeneratedValue
-     * @ORM\Column(type="integer")
-     */
-    private $id;
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -56,7 +50,7 @@ class Participant extends User
     /**
      * @return Site
      */
-    public function getSite(): Site
+    public function getSite()
     {
         return $this->site;
     }
@@ -64,23 +58,24 @@ class Participant extends User
     /**
      * @param Site $site
      */
-    public function setSite(Site $site): void
+    public function setSite( $site)
     {
         $this->site = $site;
     }
 
-    
 
-    public function getId(): ?int
-    {
-        return $this->id;
-    }
-
+    /**
+     * @return string|null
+     */
     public function getNom(): ?string
     {
         return $this->Nom;
     }
 
+    /**
+     * @param string $Nom
+     * @return $this
+     */
     public function setNom(string $Nom): self
     {
         $this->Nom = $Nom;
@@ -88,11 +83,18 @@ class Participant extends User
         return $this;
     }
 
+    /**
+     * @return string|null
+     */
     public function getPrenom(): ?string
     {
         return $this->Prenom;
     }
 
+    /**
+     * @param string $Prenom
+     * @return $this
+     */
     public function setPrenom(string $Prenom): self
     {
         $this->Prenom = $Prenom;
@@ -100,11 +102,18 @@ class Participant extends User
         return $this;
     }
 
+    /**
+     * @return string|null
+     */
     public function getTelephone(): ?string
     {
         return $this->telephone;
     }
 
+    /**
+     * @param string $telephone
+     * @return $this
+     */
     public function setTelephone(string $telephone): self
     {
         $this->telephone = $telephone;
@@ -112,11 +121,18 @@ class Participant extends User
         return $this;
     }
 
+    /**
+     * @return string|null
+     */
     public function getMail(): ?string
     {
         return $this->Mail;
     }
 
+    /**
+     * @param string $Mail
+     * @return $this
+     */
     public function setMail(string $Mail): self
     {
         $this->Mail = $Mail;
@@ -124,11 +140,18 @@ class Participant extends User
         return $this;
     }
 
+    /**
+     * @return bool|null
+     */
     public function getIsAdmin(): ?bool
     {
         return $this->isAdmin;
     }
 
+    /**
+     * @param bool $isAdmin
+     * @return $this
+     */
     public function setIsAdmin(bool $isAdmin): self
     {
         $this->isAdmin = $isAdmin;
@@ -136,11 +159,18 @@ class Participant extends User
         return $this;
     }
 
+    /**
+     * @return bool|null
+     */
     public function getIsActif(): ?bool
     {
         return $this->isActif;
     }
 
+    /**
+     * @param bool $isActif
+     * @return $this
+     */
     public function setIsActif(bool $isActif): self
     {
         $this->isActif = $isActif;

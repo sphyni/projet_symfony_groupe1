@@ -1,0 +1,31 @@
+{% extends 'layout.html.twig' %}
+
+
+{% block title_page %}
+    gérer les sites
+{% endblock %}
+
+{% block main %}
+
+    <table>
+        {% for site in sites %}
+
+
+            <tr>
+                <td>{{ site.getNom() }}</td>
+                <td><a href="#">Modifier</a> - <a href="#">Supprimer</a> </td>
+            </tr>
+
+
+        {% endfor %}
+
+        <tr>
+            <td>
+                {{ form_start (siteForm) }}
+                {{ form_widget(siteForm) }}
+            </td>
+            <td><button type="submit">Ajouter</button> </td>
+            {{ form_end(siteForm) }}
+        </tr>
+    </table>
+{% endblock %}

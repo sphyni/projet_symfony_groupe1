@@ -3,6 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <title>{% block title %}sortir.com{% endblock %}</title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,700" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     {# Run `composer require symfony/webpack-encore-bundle`
            and uncomment the following Encore helpers to start using Symfony UX #}
 
@@ -19,21 +21,23 @@
 <div class="Page">
 
     <h1>Sortir.com</h1>
-    <nav class="Navbar Page_Nav">
-        {% block nav %}
-        <a href="{{ url('accueil') }}">Accueil</a>
-        <a href="#">Mon profile</a>
-        <a href="#">Se déconnecter</a>
-        {% endblock %}
-    </nav>
 
     <header class="Header Page_Header">
-        {% block title_page %}{% endblock %}
+        <nav class="Navbar Page_Nav">
+            <ul>
+            {% block nav %}
+               <li> <a href="{{ path('accueil') }}">Accueil</a></li>
+               <li> <a href="#">Mon profil</a></li>
+                <li><a href="{{ path('app_logout')}}">Se déconnecter</a></li>
+            {% endblock %}
+            </ul>
+        </nav>
+
     </header>
 
     <div class="Page_Contents">
         <main >
-            {% block form %}{% endblock %}
+            {% block main %}{% endblock  %}
         </main>
         <aside class="Page_Aside">
 

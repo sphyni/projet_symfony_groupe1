@@ -10,8 +10,16 @@ use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
+/**
+ * Class MonProfileType
+ * @package App\Form
+ */
 class MonProfileType extends AbstractType
 {
+    /**
+     * @param FormBuilderInterface $builder
+     * @param array $options
+     */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
@@ -21,7 +29,7 @@ class MonProfileType extends AbstractType
             ->add('password', RepeatedType::class, [
                 'type'            => PasswordType::class,
                 'invalid_message' => 'confirmation du mot de passe ne correspond pas',
-                'first_options'   => ['label' => 'Mot de passe'],
+                'first_options'   => ['label' => 'password'],
                 'second_options'  => ['label' => 'confirmation'],
             ])
             ->add('telephone')
@@ -34,6 +42,9 @@ class MonProfileType extends AbstractType
         ;
     }
 
+    /**
+     * @param OptionsResolver $resolver
+     */
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([

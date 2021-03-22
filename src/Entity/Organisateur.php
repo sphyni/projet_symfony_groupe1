@@ -10,28 +10,25 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Organisateur extends Participant
 {
-    /**
-     * @ORM\Id
-     * @ORM\GeneratedValue
-     * @ORM\Column(type="integer")
-     */
-    private $id;
 
     /**
      * @ORM\Column(type="boolean")
      */
     private $isOrganisateur;
 
-    public function getId(): ?int
-    {
-        return $this->id;
-    }
 
+    /**
+     * @return bool|null
+     */
     public function getIsOrganisateur(): ?bool
     {
         return $this->isOrganisateur;
     }
 
+    /**
+     * @param bool $isOrganisateur
+     * @return $this
+     */
     public function setIsOrganisateur(bool $isOrganisateur): self
     {
         $this->isOrganisateur = $isOrganisateur;

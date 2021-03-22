@@ -1,0 +1,51 @@
+<link rel="stylesheet" href="{{ asset('css/app.css') }}">
+
+<div  id="logs">
+    <img src="{{ asset('img/eni.png') }}" alt="logo">
+</div>
+
+<div id="titre">
+<h1>Sortir</h1>
+</div>
+
+<div id="global">
+
+
+{% block body %}
+<form method="post">
+    {% if error %}
+        <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+    {% endif %}
+
+    {% if app.user %}
+        <div class="mb-3">
+            Bienvenue {{ app.user.username }}, <a href="{{ path('app_logout') }}">Logout</a>
+        </div>
+    {% endif %}
+
+
+    <h1 class="h3 mb-3 font-weight-normal">Identification</h1>
+    <label for="inputUserName">Identifiant</label>
+    <input type="text" value="{{ last_username }}" name="username" id="inputUserName" class="form-control" required autofocus>
+    <label for="inputPassword">Mot de passe</label>
+    <input type="password" name="password" id="inputPassword" class="form-control" required>
+
+    <input type="hidden" name="_csrf_token"
+           value="{{ csrf_token('authenticate') }}"
+    >
+
+        <div class="checkbox mb-3">
+            <label>
+                <input type="checkbox" name="_remember_me" checked>
+            </label>
+            <label for="remember_me">Se souvenir de moi</label>
+        </div>
+
+
+    <button class="btn btn-lg btn-primary" type="submit">
+       Connexion
+    </button>
+
+</form>
+{% endblock %}
+</div>

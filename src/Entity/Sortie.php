@@ -121,16 +121,26 @@ class Sortie
         $this->site = $site;
     }
 
+    /**
+     * @return int|null
+     */
     public function getId(): ?int
     {
         return $this->id;
     }
 
+    /**
+     * @return string|null
+     */
     public function getNom(): ?string
     {
         return $this->nom;
     }
 
+    /**
+     * @param string $nom
+     * @return $this
+     */
     public function setNom(string $nom): self
     {
         $this->nom = $nom;
@@ -138,11 +148,18 @@ class Sortie
         return $this;
     }
 
+    /**
+     * @return \DateTimeInterface|null
+     */
     public function getDateLimiteInscription(): ?\DateTimeInterface
     {
         return $this->dateLimiteInscription;
     }
 
+    /**
+     * @param \DateTimeInterface $dateLimiteInscription
+     * @return $this
+     */
     public function setDateLimiteInscription(\DateTimeInterface $dateLimiteInscription): self
     {
         $this->dateLimiteInscription = $dateLimiteInscription;
@@ -150,11 +167,18 @@ class Sortie
         return $this;
     }
 
+    /**
+     * @return \DateTimeInterface|null
+     */
     public function getDuree(): ?\DateTimeInterface
     {
         return $this->duree;
     }
 
+    /**
+     * @param \DateTimeInterface $duree
+     * @return $this
+     */
     public function setDuree(\DateTimeInterface $duree): self
     {
         $this->duree = $duree;
@@ -162,11 +186,18 @@ class Sortie
         return $this;
     }
 
+    /**
+     * @return \DateTimeInterface|null
+     */
     public function getDateHeureDebut(): ?\DateTimeInterface
     {
         return $this->dateHeureDebut;
     }
 
+    /**
+     * @param \DateTimeInterface $dateHeureDebut
+     * @return $this
+     */
     public function setDateHeureDebut(\DateTimeInterface $dateHeureDebut): self
     {
         $this->dateHeureDebut = $dateHeureDebut;
@@ -174,11 +205,18 @@ class Sortie
         return $this;
     }
 
+    /**
+     * @return int|null
+     */
     public function getNbInscriptionsMax(): ?int
     {
         return $this->nbInscriptionsMax;
     }
 
+    /**
+     * @param int $nbInscriptionsMax
+     * @return $this
+     */
     public function setNbInscriptionsMax(int $nbInscriptionsMax): self
     {
         $this->nbInscriptionsMax = $nbInscriptionsMax;
@@ -186,11 +224,18 @@ class Sortie
         return $this;
     }
 
+    /**
+     * @return string|null
+     */
     public function getInfosSortie(): ?string
     {
         return $this->infosSortie;
     }
 
+    /**
+     * @param string $infosSortie
+     * @return $this
+     */
     public function setInfosSortie(string $infosSortie): self
     {
         $this->infosSortie = $infosSortie;
@@ -198,11 +243,18 @@ class Sortie
         return $this;
     }
 
+    /**
+     * @return bool|null
+     */
     public function getHistorique(): ?bool
     {
         return $this->historique;
     }
 
+    /**
+     * @param bool $historique
+     * @return $this
+     */
     public function setHistorique(bool $historique): self
     {
         $this->historique = $historique;

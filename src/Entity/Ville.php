@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\VilleRepository;
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -28,12 +29,6 @@ class Ville
     private $codePostal;
 
     /**
-     * @var Ville
-     * @ORM\ManyToOne (targetEntity="App\Entity\Lieu", inversedBy="ville")
-     */
-    private $lieux;
-
-    /**
      * @return Ville
      */
     public function getLieux(): ?Ville
@@ -49,16 +44,32 @@ class Ville
         $this->lieux = $lieux;
     }
 
+    /**
+     * @var Ville
+     * @ORM\ManyToOne (targetEntity="App\Entity\Lieu", inversedBy="ville")
+     */
+    private $lieux;
+
+    /**
+     * @return int|null
+     */
     public function getId(): ?int
     {
         return $this->id;
     }
 
+    /**
+     * @return string|null
+     */
     public function getNom(): ?string
     {
         return $this->nom;
     }
 
+    /**
+     * @param string $nom
+     * @return $this
+     */
     public function setNom(string $nom): self
     {
         $this->nom = $nom;
@@ -66,11 +77,18 @@ class Ville
         return $this;
     }
 
+    /**
+     * @return string|null
+     */
     public function getCodePostal(): ?string
     {
         return $this->codePostal;
     }
 
+    /**
+     * @param string $codePostal
+     * @return $this
+     */
     public function setCodePostal(string $codePostal): self
     {
         $this->codePostal = $codePostal;
