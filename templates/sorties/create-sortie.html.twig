@@ -3,26 +3,17 @@
     <h1>Créer une sortie</h1>
 {% endblock %}
 {% block form %}
-    <!--Ajouter les balise form pour afficher le formulaire-->
+    <div class="form_sortie">
     {{ form_start(sortieForm) }}
     {{ form_widget(sortieForm) }}
-
-    {#
-    {{ form_start(siteForm) }}
-    {{ form_widget(siteForm) }}
-    {{ form_end(siteForm) }}
-
-
-    {{ form_start(villeForm) }}
-    {{ form_widget(villeForm) }}
-    {{ form_end(villeForm) }}
-
-
-    {{ form_start(lieuForm) }}
-    {{ form_widget(lieuForm) }}
-    {{ form_end(lieuForm) }}
-    #}
+        {{ form_start(etatForm) }}
+        {{ form_widget(etatForm) }}
+        {{ form_end(etatForm) }}
 
     <button><a href="{{ path('accueil') }}">Annuler</a></button>
+    {{ form_end(sortieForm) }}
+    </div>
+    <div class="form_etat">
 
+    </div>
 {% endblock %}

@@ -7,9 +7,11 @@ use App\Entity\Site;
 use App\Entity\Lieu;
 use App\Entity\Ville;
 use App\Entity\Sortie;
+use App\Form\CreateEtatType;
 use App\Form\CreateLieuType;
 use App\Form\CreateSiteType;
 use App\Form\CreateSortiesType;
+use App\Repository\EtatRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -24,35 +26,38 @@ class SortiesController extends AbstractController
     public function createSortie(Request $request,EntityManagerInterface $entityManager): Response
     {
         $sortie = new Sortie;
-        $site   = new Site;
-        $lieu   = new Lieu;
+       // $site   = new Site;
+        //$lieu   = new Lieu;
         //$ville  = new Ville;
         $etat   = new Etat;
 
-        $sortieForm = $this->createForm(CreateSortiesType::class, $sortie);
-        //$siteForm   = $this->createForm(CreateSiteType::class, $site);
-        //$lieuForm   = $this->createForm(CreateLieuType::class, $lieu);
-        //$villeForm  = $this->createForm(CreateVilleType::class, $ville);
+        $sortieForm     = $this->createForm(CreateSortiesType::class, $sortie);
+        //$siteForm     = $this->createForm(CreateSiteType::class, $site);
+        //$lieuForm     = $this->createForm(CreateLieuType::class, $lieu);
+        //$villeForm    = $this->createForm(CreateVilleType::class, $ville);
+        $etatForm           = $this->createForm(CreateEtatType::class, $etat);
 
         $sortieForm->handleRequest($request);
+        $etatForm->handleRequest($request);
         //$siteForm->handleRequest($request);
         //$lieuForm->handleRequest($request);
 
         if ($sortieForm->isSubmitted() && $sortieForm->isValid()){
-            //$sortie->setEtat($etat);
-            //$sortie->setLieu($lieu);
-            //$sortie->setSite($site);
-            $sortie->setHistorique(5);
+            $sortie->setEtat($etat);
+            $sortie->setHistorique(1);
 
             $entityManager->persist($sortie);
             $entityManager->flush();
 
-            return $this->redirectToRoute('sortie');
+            $this->addFlash('succes', 'Sortie publiée');
+
+            return $this->redirectToRoute('accueil');
         }
-        
+
 
         return $this->render('sorties/create-sortie.html.twig', [
             'sortieForm'   => $sortieForm->createView(),
+            'etatForm'         => $etatForm->createView(),
             //'siteForm'     => $siteForm->createView(),
             //'lieuForm'     => $lieuForm->createView(),
             //'villeForm'    => $villeForm->createView(),
