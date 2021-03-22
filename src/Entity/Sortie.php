@@ -3,8 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\SortieRepository;
-use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=SortieRepository::class)
@@ -55,7 +55,9 @@ class Sortie
 
     /**
      * @var Etat
-     * @ORM\ManyToOne (targetEntity="App\Entity\Etat", inversedBy="sorties")
+     * @ORM\ManyToOne (targetEntity="App\Entity\Etat", inversedBy="sorties", cascade={"persist"})
+     * @Assert\Type(type="App\Entity\Etat")
+     * @Assert\Valid
      */
     private $etat;
 
@@ -76,7 +78,7 @@ class Sortie
     /**
      * @return Etat
      */
-    public function getEtat(): Etat
+    public function getEtat(): ?Etat
     {
         return $this->etat;
     }
@@ -84,7 +86,7 @@ class Sortie
     /**
      * @param Etat $etat
      */
-    public function setEtat(Etat $etat): void
+    public function setEtat(?Etat $etat): void
     {
         $this->etat = $etat;
     }
@@ -92,7 +94,7 @@ class Sortie
     /**
      * @return Lieu
      */
-    public function getLieu(): Lieu
+    public function getLieu(): ?Lieu
     {
         return $this->lieu;
     }
@@ -108,7 +110,7 @@ class Sortie
     /**
      * @return Site
      */
-    public function getSite(): Site
+    public function getSite(): ?Site
     {
         return $this->site;
     }
