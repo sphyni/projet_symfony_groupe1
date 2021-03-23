@@ -70,7 +70,7 @@ class SortiesController extends AbstractController
     }
     /**
      * @Route("/accueil", name="accueil")
-     */
+
     public function createSearch(Request $request, EntityManagerInterface $entityManager): Response{
         $sortie = new Sortie;
 
@@ -87,7 +87,7 @@ class SortiesController extends AbstractController
             'search_Form' => $searchForm->createView()
         ]);
 
-    }
+    } */
 
     /**
      * @Route("/accueil", name="accueil")
