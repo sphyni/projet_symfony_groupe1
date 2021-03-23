@@ -24,16 +24,9 @@ class CreateAccueilType extends AbstractType
             //->add('nbInscriptionsMax')
             //->add('infosSortie')
             //->add('historique')
-            ->add('etat', ChoiceType::class,[
-                'choices'=>[
-                    'Créée'=>1,
-                    'Ouverte'=>2,
-                    'Cloturée'=>3,
-                    'Activité en cours'=>4,
-                    'Passée'=>5,
-                    'Annulée'=>6,
-                ]
-            ])
+
+
+
             ->add('Rechercher', SubmitType::class)
             //->add('lieu')
             //->add('site')

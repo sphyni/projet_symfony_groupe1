@@ -77,7 +77,7 @@ class ParticipantController extends AbstractController
     /**
      * @Route("/modify", name="modify")
      */
-    public function profileEdit(Request $request, EntityManagerInterface $em, FileUploader $fu) : Response
+    public function profileEdit(Request $request, EntityManagerInterface $em) : Response
     {
         $user = $this->getParticipant();
 
