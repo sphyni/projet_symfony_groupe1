@@ -41,7 +41,7 @@
 
 <div class="button">
     {% if(user.getusername() == app.user.username) %}
-    <button type="button" id="btnModifier" class="button btn-sm" href="#"  >Modifier</button>
+    <button><a href="{{ path('modify', {'id':app.user.id}) }}">Modifier</a></button>
     {% endif %}
     <button type="button" id="btnRetour" class="button btn-sm" href="#">Retour</button>
 </div>

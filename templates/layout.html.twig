@@ -33,11 +33,16 @@
             </ul>
         </nav>
 
+       <aside>
+            Date du jour : {{ "now"|date('d-m-y')}} <br>
+            Participant : {{ app.user.username }}
+        </aside>
+
     </header>
 
     <div class="Page_Contents">
         <main >
-            {% block main %}{% endblock  %}
+            {% block main %}{% endblock %}
         </main>
         <aside class="Page_Aside">
 

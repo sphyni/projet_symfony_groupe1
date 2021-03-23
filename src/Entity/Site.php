@@ -60,9 +60,9 @@ class Site
     }
 
     /**
-     * @param ArrayCollection $participants
+     * @param  $participants
      */
-    public function setParticipants(ArrayCollection $participants): void
+    public function setParticipants( $participants)
     {
         $this->participants = $participants;
     }
@@ -70,7 +70,7 @@ class Site
     /**
      * @return int|null
      */
-    public function getId(): ?int
+    public function getId()
     {
         return $this->id;
     }
@@ -78,7 +78,7 @@ class Site
     /**
      * @return string|null
      */
-    public function getNom(): ?string
+    public function getNom()
     {
         return $this->nom;
     }
@@ -87,7 +87,7 @@ class Site
      * @param string $nom
      * @return $this
      */
-    public function setNom(string $nom): self
+    public function setNom(string $nom)
     {
         $this->nom = $nom;
 

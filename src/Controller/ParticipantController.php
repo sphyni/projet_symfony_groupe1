@@ -4,12 +4,14 @@ namespace App\Controller;
 
 use App\Entity\Participant;
 use App\Entity\User;
+use App\Form\ModificationUserType;
 use App\Form\MonProfileType;
 use Doctrine\ORM\EntityManagerInterface;
-use http\Client\Request;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
 /**
@@ -75,45 +77,53 @@ class ParticipantController extends AbstractController
         }
     }
     /**
-     * @Route("/modify", name="modify")
+     * @Route("/profile/modify/{id}", name="modify", requirements={"id":"\d+"})
      */
-    public function profileEdit(Request $request, EntityManagerInterface $em, FileUploader $fu) : Response
+    public function profileEdit(int $id, UserPasswordEncoderInterface $passwordEncoder, Request $request) : Response
     {
-        $user = $this->getParticipant();
+        $entityManager =$this->getDoctrine()->getManager();
+        $user = $entityManager->getRepository(Participant::class)->find($id);
+        $modificationForm = $this->createForm(ModificationUserType::class, $user);
+        $modificationForm->handleRequest($request);
+        $data=$modificationForm->getData();
 
-        $form = $this->createForm(AccountType::class, $user);
-
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            //dump($form->getData());exit;
+        //dd($modificationForm);
 
 
-            $em->persist($user);
-            $em->flush();
+        if ($modificationForm->isSubmitted() && $modificationForm->isValid()) {
 
-            return $this->redirectToRoute('home');
+
+           $data->setPassword($passwordEncoder->encodePassword($user, $modificationForm->get('password')->getData()));
+            $entityManager->persist($user);
+            $entityManager->flush();
+
+            $this->addFlash('success', 'profile modifié');
+            return $this->redirectToRoute('user_list',[
+                'user' => $user,
+            ]);
         }
 
-        return $this->render('user/details.html.twig', [
-            'form'=> $form->createView(),
-            'user'=>$user,
-        ]);
-    }
-    /**
-     * @Route("/", name="app_login")
-     */
 
-    public function login(AuthenticationUtils $utils): Response
+        return $this->render('users/modification.html.twig',[
+            'user' => $user,
+            'modificationForm'=>$modificationForm->createView()
+        ]);
+
+
+    }
+
+        /**
+         * @Route("/", name="app_login")
+         */
+
+        public function login(AuthenticationUtils $utils): Response
     {
         return $this->render('security/login.html.twig', [
             'loginError'      => $utils->getLastAuthenticationError(),
             'loginUsername'   => $utils->getLastUsername(),
         ]);
     }
-    /**
-     * @Route(
-     */
+
 
 
 
