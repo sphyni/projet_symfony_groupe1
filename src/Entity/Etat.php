@@ -12,6 +12,9 @@ use Symfony\Component\Validator\Constraints as Assert;
  */
 class Etat
 {
+    public function __toString():string{
+        return $this->getLibelle();
+    }
     /**
      * @ORM\Id
      * @ORM\GeneratedValue

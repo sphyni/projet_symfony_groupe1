@@ -14,7 +14,7 @@ class CreateVilleType extends AbstractType
         $builder
             ->add('nom')
             ->add('codePostal')
-            //->add('lieux')
+            ->add('lieux', CreateLieuType::class)
         ;
     }
 

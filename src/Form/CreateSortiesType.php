@@ -2,9 +2,8 @@
 
 namespace App\Form;
 
-use App\Form\CreateEtatType;
+
 use App\Entity\Sortie;
-use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
@@ -48,8 +47,8 @@ class CreateSortiesType extends AbstractType
             ])
             ->add('historique',HiddenType::class)
             ->add('etat', CreateEtatType::class)
-            ->add('lieu',HiddenType::class)
-            ->add('site',HiddenType::class)
+            ->add('lieu',CreateLieuType::class)
+            ->add('site',CreateSiteType::class)
             //->add('inscrits',HiddenType::class)
             //->add('save', SubmitType::class,['label'=>'Enregistrer'])
             ->add('add', SubmitType::class, ['label'=>'Publier la sortie'])

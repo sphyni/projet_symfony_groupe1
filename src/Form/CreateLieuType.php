@@ -3,9 +3,9 @@
 namespace App\Form;
 
 use App\Entity\Lieu;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
-use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -15,12 +15,11 @@ class CreateLieuType extends AbstractType
     {
         $builder
 
-            ->add('nom',ChoiceType::class, [
-                'label'=>'Lieu : ',
-                    'choices'=>['yes'=>true ,'no'=>false,
-                        'required'=>true]]
-            //Créer une requête select pour afficher dynamiquement des le choix dans la liste déroulante
-            )
+            ->add('nom', EntityType::class,[
+                'class' => Lieu::class,
+                'choice_label' => 'nom',
+                'label' => 'Lieu : ',
+            ])
             ->add('rue', TextType::class, [
                 'label'=>'Rue : ',
                 'required'=>true

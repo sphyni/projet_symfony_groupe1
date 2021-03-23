@@ -63,13 +63,17 @@ class Sortie
 
     /**
      * @var Lieu
-     * @ORM\ManyToOne  (targetEntity="App\Entity\Lieu", inversedBy="sorties")
+     * @ORM\ManyToOne  (targetEntity="App\Entity\Lieu", inversedBy="sorties", cascade={"persist"})
+     * @Assert\Type(type="App\Entity\Etat")
+     * @Assert\Valid
      */
     private $lieu;
 
     /**
      * @var Site
-     * @ORM\ManyToOne  (targetEntity="App\Entity\Site", inversedBy="sorties")
+     * @ORM\ManyToOne  (targetEntity="App\Entity\Site", inversedBy="sorties", cascade={"persist"})
+     * @Assert\Type(type="App\Entity\Etat")
+     * @Assert\Valid
      */
     private $site;
 
@@ -102,7 +106,7 @@ class Sortie
     /**
      * @param Lieu $lieu
      */
-    public function setLieu(Lieu $lieu): void
+    public function setLieu(?Lieu $lieu): void
     {
         $this->lieu = $lieu;
     }
@@ -118,7 +122,7 @@ class Sortie
     /**
      * @param Site $site
      */
-    public function setSite(Site $site): void
+    public function setSite(?Site $site): void
     {
         $this->site = $site;
     }

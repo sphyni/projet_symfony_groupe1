@@ -3,7 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\VilleRepository;
-use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -46,7 +46,9 @@ class Ville
 
     /**
      * @var Ville
-     * @ORM\ManyToOne (targetEntity="App\Entity\Lieu", inversedBy="ville")
+     * @ORM\ManyToOne (targetEntity="App\Entity\Lieu", inversedBy="ville", cascade={"persist"})
+     * @Assert\Type(type="App\Entity\Etat")
+     * @Assert\Valid
      */
     private $lieux;
 
