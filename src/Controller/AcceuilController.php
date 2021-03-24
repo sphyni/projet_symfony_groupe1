@@ -22,7 +22,7 @@ class AcceuilController extends AbstractController
      */
     public function index(SortieRepository $repository,EntityManagerInterface $em, Request $request): Response
     {
-        $data = new SearchData();
+        $data = new Sortie();
         $form = $this->createForm(SearchForm::class, $data);
         $form->handleRequest($request);
 
@@ -34,6 +34,20 @@ class AcceuilController extends AbstractController
     }
 
 
+    /**
+     * @Route("/sortie/{id}", name="details", requirements={"id":"\d+"})
+     */
+    public function details(int $id, EntityManagerInterface $em):response
+    {
 
+        $repository=$em->getRepository(Sortie::class);
+
+        $sortie = $repository->find($id);
+
+        return $this->render('sorties/details.html.twig',[
+            'sortie' => $sortie
+        ]);
+
+    }
 
 }

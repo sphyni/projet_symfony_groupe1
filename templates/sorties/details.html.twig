@@ -1,0 +1,23 @@
+{% extends 'layout.html.twig' %}
+
+{# {% block title_page %} {{ user.getPrenom() }} {{ user.getNom() }} {% endblock %} #}
+{% block title_page %} {{ user.getUsername() }} {% endblock %}
+
+
+{% block main %}
+
+    <table>
+        <tr>
+            <td>Nom de la sortie</td>
+            <td> : </td>
+            <td>{{ sortie.getnom() }}</td>
+
+
+
+    </table>
+
+
+
+
+
+{% endblock %}

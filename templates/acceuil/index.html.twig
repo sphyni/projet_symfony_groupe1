@@ -40,7 +40,7 @@
                         <td>{#  {{ sortie.etat().getLibelle() }}  #}</td>
                         <td>X</td>
                         <td></td>
-                        <td><a href="#">Afficher</a></td>
+                        <td><a href="{{ path('details', {'id':app.sortie.id}) }}"> Afficher</a></td>
                     </tr>
                 </tbody>
                 {% endfor %}

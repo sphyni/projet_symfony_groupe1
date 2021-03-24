@@ -23,26 +23,29 @@ class SortieRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, Sortie::class);
     }
-    public function findBySite(int $site){
-        return $this->createQueryBuilder('n')
-            ->join('n.site', 's')
-            ->addSelect('s')
-            ->andWhere('n.nom = :nom')
-            ->setParameter('nom', $site)
-            ->getQuery();
 
-    }
-    public function findSearch(SearchData $search): array
+    /**
+     * @param Sortie $search
+     * @return array
+     */
+    public function findSearch(Sortie $search): array
     {
         $query = $this
             ->createQueryBuilder('n')
             ->join('n.site','s')
             ->addselect('s');
+
         if (!empty($search->r)) {
             $query=$query
                 ->andWhere('s.nom LIKE :r')
-                ->setParameter('r',"%{search->r}%");
+                ->setParameter('r',"%{$search->r}%");
 
+        }
+
+        if (!empty($search->site)){
+            $query = $query
+                ->andWhere('s.id IN (:site)')
+                ->setParameter('site', $search->site);
         }
         return $query->getQuery()->getResult();
     }

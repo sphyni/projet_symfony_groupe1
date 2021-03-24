@@ -45,4 +45,20 @@ class SortiesController extends AbstractController
 
         ]);
     }
+
+    /**
+     * @Route("/sortie/{id}", name="details", requirements={"id":"\d+"})
+     */
+    public function details(int $id, EntityManagerInterface $em):response
+    {
+
+        $repository=$em->getRepository(Sortie::class);
+
+        $sortie = $repository->find($id);
+
+        return $this->render('sorties/details.html.twig',[
+            'sortie' => $sortie
+        ]);
+
+    }
 }

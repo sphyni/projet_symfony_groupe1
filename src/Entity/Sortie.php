@@ -75,7 +75,7 @@ class Sortie
      * @Assert\Type(type="App\Entity\Site")
      * @Assert\Valid
      */
-    private $site;
+    public $site;
 
     /**
      * @var Participant
@@ -292,4 +292,17 @@ class Sortie
 
         return $this;
     }
+
+    /**
+     * @var string
+     */
+    public $r ='';
+
+
+    public function __toString():string{
+        return $this->getNom();
+    }
+
+
+
 }
