@@ -25,7 +25,7 @@ class ParticipantFormType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('username')
+            ->add('userName')
             ->add('plainPassword', PasswordType::class, [
                 // instead of being set onto the object directly,
                 // this is read and encoded in the controller
@@ -49,7 +49,7 @@ class ParticipantFormType extends AbstractType
             ->add('isAdmin')
             ->add('isActif')
 
-            ->add('agreeTerms', CheckboxType::class, [
+            ->add('AgreeTerms', CheckboxType::class, [
                 'mapped' => false,
                 'constraints' => [
                     new IsTrue([
