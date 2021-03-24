@@ -5,12 +5,16 @@ namespace App\Entity;
 use App\Repository\EtatRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=EtatRepository::class)
  */
 class Etat
 {
+    public function __toString():string{
+        return $this->getLibelle();
+    }
     /**
      * @ORM\Id
      * @ORM\GeneratedValue
@@ -20,6 +24,7 @@ class Etat
 
     /**
      * @ORM\Column(type="string", length=250, nullable=true)
+     * @Assert\NotBlank()
      */
     private $libelle;
 

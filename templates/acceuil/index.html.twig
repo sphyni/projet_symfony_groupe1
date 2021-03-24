@@ -1,0 +1,43 @@
+{% extends 'layout.html.twig' %}
+{% block title %}
+<title>Accueil!</title>
+{% endblock %}
+{% block main %}
+    Date du jour : {{ "now"|date('d-m-y')}} <br>
+    Participant : {{ app.user.username }}
+
+    <div class="accueil">
+        <h1>Sorties</h1>
+            <table>
+                <cpation>Liste de Sorties</cpation>
+                <colgroup span="8" class="columns"></colgroup>
+                <thead>
+                    <tr>
+                        <th>Nom de la sortie</th>
+                        <th>Date de la sortie</th>
+                        <th>Clôturé</th>
+                        <th>Inscription/Places</th>
+                        <th>Etat</th>
+                        <th>Inscrit</th>
+                        <th>Organisateur</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                {% for sortie in sorties %}
+                <tbody>
+                    <tr>
+                        <td>{{ sortie.getNom() }}</td>
+                        <td>{{ sortie.getDateHeureDebut()|date('d-m-y  h:i') }}</td>
+                        <td>{{ sortie.getDateLimiteInscription()|date('d-m-y')}}</td>
+                        <td>{{ sortie.getNbInscriptionsMax() }}</td>
+                        <td>{{ sortie.etat().getLibelle() }}</td>
+                        <td>X</td>
+                        <td></td>
+                        <td><a href="#">Afficher</a></td>
+                    </tr>
+                </tbody>
+                {% endfor %}
+            </table>
+
+</div>
+{% endblock %}

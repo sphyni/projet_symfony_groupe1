@@ -3,8 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\SortieRepository;
-use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=SortieRepository::class)
@@ -55,19 +55,25 @@ class Sortie
 
     /**
      * @var Etat
-     * @ORM\ManyToOne (targetEntity="App\Entity\Etat", inversedBy="sorties")
+     * @ORM\ManyToOne (targetEntity="App\Entity\Etat", inversedBy="sorties", cascade={"persist"})
+     * @Assert\Type(type="App\Entity\Etat")
+     * @Assert\Valid
      */
     private $etat;
 
     /**
      * @var Lieu
-     * @ORM\ManyToOne  (targetEntity="App\Entity\Lieu", inversedBy="sorties")
+     * @ORM\ManyToOne  (targetEntity="App\Entity\Lieu", inversedBy="sorties", cascade={"persist"})
+     * @Assert\Type(type="App\Entity\Etat")
+     * @Assert\Valid
      */
     private $lieu;
 
     /**
      * @var Site
-     * @ORM\ManyToOne  (targetEntity="App\Entity\Site", inversedBy="sorties")
+     * @ORM\ManyToOne  (targetEntity="App\Entity\Site", inversedBy="sorties", cascade={"persist"})
+     * @Assert\Type(type="App\Entity\Etat")
+     * @Assert\Valid
      */
     private $site;
 
@@ -76,7 +82,7 @@ class Sortie
     /**
      * @return Etat
      */
-    public function getEtat(): Etat
+    public function getEtat(): ?Etat
     {
         return $this->etat;
     }
@@ -84,7 +90,7 @@ class Sortie
     /**
      * @param Etat $etat
      */
-    public function setEtat(Etat $etat): void
+    public function setEtat(?Etat $etat): void
     {
         $this->etat = $etat;
     }
@@ -92,7 +98,7 @@ class Sortie
     /**
      * @return Lieu
      */
-    public function getLieu(): Lieu
+    public function getLieu(): ?Lieu
     {
         return $this->lieu;
     }
@@ -100,7 +106,7 @@ class Sortie
     /**
      * @param Lieu $lieu
      */
-    public function setLieu(Lieu $lieu): void
+    public function setLieu(?Lieu $lieu): void
     {
         $this->lieu = $lieu;
     }
@@ -108,7 +114,7 @@ class Sortie
     /**
      * @return Site
      */
-    public function getSite(): Site
+    public function getSite(): ?Site
     {
         return $this->site;
     }
@@ -116,7 +122,7 @@ class Sortie
     /**
      * @param Site $site
      */
-    public function setSite(Site $site): void
+    public function setSite(?Site $site): void
     {
         $this->site = $site;
     }

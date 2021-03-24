@@ -7,7 +7,7 @@ use App\Entity\User;
 use App\Form\ModificationUserType;
 use App\Form\MonProfileType;
 use Doctrine\ORM\EntityManagerInterface;
-use Symfony\Component\HttpFoundation\Request;
+use http\Client\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -116,7 +116,7 @@ class ParticipantController extends AbstractController
          * @Route("/", name="app_login")
          */
 
-        public function login(AuthenticationUtils $utils): Response
+    public function login(AuthenticationUtils $utils): Response
     {
         return $this->render('security/login.html.twig', [
             'loginError'      => $utils->getLastAuthenticationError(),
