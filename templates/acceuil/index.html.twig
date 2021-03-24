@@ -9,12 +9,6 @@
     </div>
     <div class="accueil">
         <h1>Sorties</h1>
-
-        {% include 'sorties/filter.html.twig' with {form :form} only %}
-
-
-
-
             <table>
                 <cpation>Liste de Sorties</cpation>
                 <colgroup span="8" class="columns"></colgroup>
@@ -37,10 +31,10 @@
                         <td>{{ sortie.getDateHeureDebut()|date('d-m-y  h:i') }}</td>
                         <td>{{ sortie.getDateLimiteInscription()|date('d-m-y')}}</td>
                         <td>{{ sortie.getNbInscriptionsMax() }}</td>
-                        <td>{#  {{ sortie.etat().getLibelle() }}  #}</td>
+                        <td>{{ sortie.etat().getLibelle() }}</td>
                         <td>X</td>
-                        <td></td>
-                        <td><a href="{{ path('details', {'id':app.sortie.id}) }}"> Afficher</a></td>
+                        <td>{{ sortie.participants().getNom() }}</td>
+                        <td><a href="#">Afficher</a></td>
                     </tr>
                 </tbody>
                 {% endfor %}
