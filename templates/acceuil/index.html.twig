@@ -8,6 +8,12 @@
 
     <div class="accueil">
         <h1>Sorties</h1>
+
+        {% include 'sorties/filter.html.twig' with {form :form} only %}
+
+
+
+
             <table>
                 <cpation>Liste de Sorties</cpation>
                 <colgroup span="8" class="columns"></colgroup>

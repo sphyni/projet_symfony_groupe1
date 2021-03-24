@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 
+use App\Data\SearchData;
 use App\Entity\Sortie;
 use App\Form\CreateAccueilType;
 use App\Form\CreateSortiesType;
@@ -46,6 +47,8 @@ class SortiesController extends AbstractController
 
         ]);
     }
+
+
     /**
      * @Route("/accueil", name="accueil")
 

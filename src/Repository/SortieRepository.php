@@ -2,6 +2,7 @@
 
 namespace App\Repository;
 
+use App\Data\SearchData;
 use App\Entity\Sortie;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
@@ -31,7 +32,20 @@ class SortieRepository extends ServiceEntityRepository
             ->getQuery();
 
     }
+    public function findSearch(SearchData $search): array
+    {
+        $query = $this
+            ->createQueryBuilder('n')
+            ->join('n.site','s')
+            ->addselect('s');
+        if (!empty($search->r)) {
+            $query=$query
+                ->andWhere('s.nom LIKE :r')
+                ->setParameter('r','%{search->r}%');
 
+        }
+        return $query->getQuery()->getResult();
+    }
 
     // /**
     //  * @return Sortie[] Returns an array of Sortie objects
