@@ -22,7 +22,6 @@ class GestionVilleType extends AbstractType
         $builder
             ->add('nom')
             ->add('codePostal')
-            ->add('lieux')
         ;
     }
 
