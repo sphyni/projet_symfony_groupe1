@@ -11,9 +11,11 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Site
 {
+
     public function __toString():string{
         return $this->getNom();
     }
+
     /**
      * @ORM\Id
      * @ORM\GeneratedValue
@@ -97,10 +99,4 @@ class Site
         return $this;
     }
 
-    /**
-     * @return mixed
-     */
-    public function __toString(){
-        return $this->nom;
-    }
 }
