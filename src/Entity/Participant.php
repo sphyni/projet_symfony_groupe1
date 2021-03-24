@@ -50,7 +50,7 @@ class Participant extends User
 
     /**
      * @var ArrayCollection
-     * @ORM\OneToMany (targetEntity="App\Entity\Sortie", mappedBy="participant")
+     * @ORM\OneToMany (targetEntity="App\Entity\Sortie", mappedBy="participants")
      */
     private $sortie;
 

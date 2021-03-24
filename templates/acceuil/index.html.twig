@@ -3,9 +3,10 @@
 <title>Accueil!</title>
 {% endblock %}
 {% block main %}
-    Date du jour : {{ "now"|date('d-m-y')}} <br>
-    Participant : {{ app.user.username }}
-
+    <div class="user_name">
+      Date du jour : {{ "now"|date('d-m-y')}} <br>
+      Participant : {{ app.user.username }}
+    </div>
     <div class="accueil">
         <h1>Sorties</h1>
 
@@ -36,7 +37,7 @@
                         <td>{{ sortie.getDateHeureDebut()|date('d-m-y  h:i') }}</td>
                         <td>{{ sortie.getDateLimiteInscription()|date('d-m-y')}}</td>
                         <td>{{ sortie.getNbInscriptionsMax() }}</td>
-                        <td>{{ sortie.etat().getLibelle() }}</td>
+                        <td>{#  {{ sortie.etat().getLibelle() }}#}</td>
                         <td>X</td>
                         <td></td>
                         <td><a href="#">Afficher</a></td>
