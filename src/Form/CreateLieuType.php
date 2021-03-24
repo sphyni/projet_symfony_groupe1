@@ -3,8 +3,12 @@
 namespace App\Form;
 
 use App\Entity\Lieu;
+use App\Entity\Ville;
+use Doctrine\DBAL\Types\FloatType;
+use Doctrine\DBAL\Types\IntegerType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -15,23 +19,17 @@ class CreateLieuType extends AbstractType
     {
         $builder
 
-            ->add('nom', EntityType::class,[
-                'class' => Lieu::class,
-                'choice_label' => 'nom',
-                'label' => 'Lieu : ',
-            ])
+            ->add('nom',TextType::class)
             ->add('rue', TextType::class, [
                 'label'=>'Rue : ',
                 'required'=>true
             ])
-            ->add('latitude', TextType::class, [
-                'label'=>'Latitude : ',
-                'required'=> true
-            ],)
-            ->add('longitude', TextType::class, [
-                'label'=>'Longitude : ',
-                'required'=>true
+            ->add('latitude')
+            ->add('longitude')
+            ->add('ville', EntityType::class, [
+                'class' => Ville::class,
             ])
+            ->add('add', SubmitType::class)
         ;
     }
 

@@ -64,7 +64,7 @@ class Sortie
     /**
      * @var Lieu
      * @ORM\ManyToOne  (targetEntity="App\Entity\Lieu", inversedBy="sorties", cascade={"persist"})
-     * @Assert\Type(type="App\Entity\Etat")
+     * @Assert\Type (type="App\Entity\Lieu")
      * @Assert\Valid
      */
     private $lieu;
@@ -72,12 +72,35 @@ class Sortie
     /**
      * @var Site
      * @ORM\ManyToOne  (targetEntity="App\Entity\Site", inversedBy="sorties", cascade={"persist"})
-     * @Assert\Type(type="App\Entity\Etat")
+     * @Assert\Type(type="App\Entity\Site")
      * @Assert\Valid
      */
     private $site;
 
+    /**
+     * @var Participant
+     * @ORM\ManyToOne (targetEntity="App\Entity\Participant", inversedBy="sortie", cascade={"persist"})
+     * @Assert\Type (type="App\Entity\Participant")
+     * @Assert\Valid
+     */
+    private $participants;
 
+    /**
+     * @return Participant
+     */
+    public function getParticipants(): Participant
+    {
+        return $this->participants;
+    }
+
+    /**
+     * @param Participant $participants
+     */
+    public function setParticipants(Participant $participants): void
+    {
+        $this->participants = $participants;
+    }
+    
 
     /**
      * @return Etat
@@ -98,7 +121,7 @@ class Sortie
     /**
      * @return Lieu
      */
-    public function getLieu(): ?Lieu
+    public function getLieu()
     {
         return $this->lieu;
     }
@@ -106,9 +129,11 @@ class Sortie
     /**
      * @param Lieu $lieu
      */
-    public function setLieu(?Lieu $lieu): void
+    public function setLieu($lieu)
     {
         $this->lieu = $lieu;
+
+        return $this;
     }
 
     /**

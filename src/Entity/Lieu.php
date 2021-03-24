@@ -11,6 +11,9 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Lieu
 {
+    public function __toString():string{
+        return $this->getNom();
+    }
     /**
      * @ORM\Id
      * @ORM\GeneratedValue
@@ -39,26 +42,27 @@ class Lieu
     private $longitude;
 
     /**
-     * @var ArrayCollection
-     *@ORM\OneToMany (targetEntity="App\Entity\Ville", mappedBy="lieux")
+     * @var Ville
+     * @ORM\ManyToOne  (targetEntity="App\Entity\Ville", inversedBy="lieux", cascade={"persist"})
      */
     private $ville;
 
     /**
-     * @return ArrayCollection
+     * @return Ville
      */
-    public function getVille(): ArrayCollection
+    public function getVille(): ?Ville
     {
         return $this->ville;
     }
 
     /**
-     * @param ArrayCollection $ville
+     * @param Ville $ville
      */
-    public function setVille(ArrayCollection $ville): void
+    public function setVille(?Ville $ville): void
     {
         $this->ville = $ville;
     }
+
 
     /**
      * @return ArrayCollection
@@ -90,19 +94,13 @@ class Lieu
         return $this->id;
     }
 
-    /**
-     * @return string|null
-     */
-    public function getNom(): ?string
+
+    public function getNom()
     {
         return $this->nom;
     }
 
-    /**
-     * @param string|null $nom
-     * @return $this
-     */
-    public function setNom(?string $nom): self
+    public function setNom($nom)
     {
         $this->nom = $nom;
 

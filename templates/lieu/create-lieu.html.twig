@@ -1,0 +1,9 @@
+{% extends 'layout.html.twig' %}
+{% block main %}
+    <div class="form_sortie">
+        {{ form_start(lieuForm) }}
+        {{ form_widget(lieuForm) }}
+        <button><a href="{{ path('accueil') }}">Annuler</a></button>
+        {{ form_end(lieuForm) }}
+    </div>
+{% endblock %}

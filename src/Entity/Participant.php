@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\ParticipantRepository;
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -48,6 +49,30 @@ class Participant extends User
     private $site;
 
     /**
+     * @var ArrayCollection
+     * @ORM\OneToMany (targetEntity="App\Entity\Sortie", mappedBy="participant")
+     */
+    private $sortie;
+
+    /**
+     * @return ArrayCollection
+     */
+    public function getSortie(): ArrayCollection
+    {
+        return $this->sortie;
+    }
+
+    /**
+     * @param ArrayCollection $sortie
+     */
+    public function setSortie(ArrayCollection $sortie): void
+    {
+        $this->sortie = $sortie;
+    }
+
+
+
+    /**
      * @return Site
      */
     public function getSite()
@@ -63,7 +88,6 @@ class Participant extends User
         $this->site = $site;
         return $this;
     }
-
 
     /**
      * @return string|null
