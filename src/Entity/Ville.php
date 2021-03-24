@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\VilleRepository;
+use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -20,6 +21,7 @@ class Ville
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank
      */
     private $nom;
 
@@ -29,28 +31,29 @@ class Ville
     private $codePostal;
 
     /**
-     * @return Ville
+     * @var ArrayCollection
+     * @ORM\OneToMany  (targetEntity="App\Entity\Lieu", mappedBy="ville")
+     * @Assert\Type(type="App\Entity\Etat")
+     * @Assert\Valid
      */
-    public function getLieux(): ?Ville
+    private $lieux;
+
+    /**
+     * @return ArrayCollection
+     */
+    public function getLieux(): ?ArrayCollection
     {
         return $this->lieux;
     }
 
     /**
-     * @param Ville $lieux
+     * @param ArrayCollection $lieux
      */
-    public function setLieux(Ville $lieux): void
+    public function setLieux(?ArrayCollection $lieux): void
     {
         $this->lieux = $lieux;
     }
 
-    /**
-     * @var Ville
-     * @ORM\ManyToOne (targetEntity="App\Entity\Lieu", inversedBy="ville", cascade={"persist"})
-     * @Assert\Type(type="App\Entity\Etat")
-     * @Assert\Valid
-     */
-    private $lieux;
 
     /**
      * @return int|null
@@ -79,22 +82,22 @@ class Ville
         return $this;
     }
 
-    /**
-     * @return string|null
-     */
-    public function getCodePostal(): ?string
+
+    public function getCodePostal()
     {
         return $this->codePostal;
     }
 
-    /**
-     * @param string $codePostal
-     * @return $this
-     */
-    public function setCodePostal(string $codePostal): self
+
+    public function setCodePostal( $codePostal)
     {
         $this->codePostal = $codePostal;
 
         return $this;
+    }
+
+    public function __toString(): string
+    {
+        return $this->getNom();
     }
 }

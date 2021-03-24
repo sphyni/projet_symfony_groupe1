@@ -37,7 +37,7 @@ class SortiesController extends AbstractController
 
             $this->addFlash('succes', 'Sortie publiée');
 
-            return $this->redirectToRoute('accueil');
+            return $this->redirectToRoute('sorties');
         }
 
 
