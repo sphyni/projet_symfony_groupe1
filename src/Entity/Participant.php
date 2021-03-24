@@ -55,6 +55,11 @@ class Participant extends User
     private $sortie;
 
     /**
+     *  @ORM\ManyToMany(targetEntity="App\Entity\Sortie")
+     */
+    private $inscrits;
+
+    /**
      * @return ArrayCollection
      */
     public function getSortie(): ArrayCollection

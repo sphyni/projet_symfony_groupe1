@@ -85,6 +85,12 @@ class Sortie
      */
     private $participants;
 
+
+    /**
+     * @ORM\ManyToMany(targetEntity="App\Entity\Participant")
+     */
+    private $inscrits;
+
     /**
      * @return Participant
      */
