@@ -41,7 +41,7 @@ class SortieRepository extends ServiceEntityRepository
         if (!empty($search->r)) {
             $query=$query
                 ->andWhere('s.nom LIKE :r')
-                ->setParameter('r','%{search->r}%');
+                ->setParameter('r',"%{search->r}%");
 
         }
         return $query->getQuery()->getResult();
