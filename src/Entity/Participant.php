@@ -61,13 +61,14 @@ class Participant extends User
     public function setSite( $site)
     {
         $this->site = $site;
+        return $this;
     }
 
 
     /**
      * @return string|null
      */
-    public function getNom(): ?string
+    public function getNom()
     {
         return $this->Nom;
     }
@@ -76,7 +77,7 @@ class Participant extends User
      * @param string $Nom
      * @return $this
      */
-    public function setNom(string $Nom): self
+    public function setNom(string $Nom)
     {
         $this->Nom = $Nom;
 
@@ -86,7 +87,7 @@ class Participant extends User
     /**
      * @return string|null
      */
-    public function getPrenom(): ?string
+    public function getPrenom()
     {
         return $this->Prenom;
     }
@@ -95,7 +96,7 @@ class Participant extends User
      * @param string $Prenom
      * @return $this
      */
-    public function setPrenom(string $Prenom): self
+    public function setPrenom(string $Prenom)
     {
         $this->Prenom = $Prenom;
 
@@ -105,7 +106,7 @@ class Participant extends User
     /**
      * @return string|null
      */
-    public function getTelephone(): ?string
+    public function getTelephone()
     {
         return $this->telephone;
     }
@@ -114,7 +115,7 @@ class Participant extends User
      * @param string $telephone
      * @return $this
      */
-    public function setTelephone(string $telephone): self
+    public function setTelephone(string $telephone)
     {
         $this->telephone = $telephone;
 
@@ -133,7 +134,7 @@ class Participant extends User
      * @param string $Mail
      * @return $this
      */
-    public function setMail(string $Mail): self
+    public function setMail(string $Mail)
     {
         $this->Mail = $Mail;
 
@@ -143,7 +144,7 @@ class Participant extends User
     /**
      * @return bool|null
      */
-    public function getIsAdmin(): ?bool
+    public function getIsAdmin()
     {
         return $this->isAdmin;
     }
@@ -152,7 +153,7 @@ class Participant extends User
      * @param bool $isAdmin
      * @return $this
      */
-    public function setIsAdmin(bool $isAdmin): self
+    public function setIsAdmin(bool $isAdmin)
     {
         $this->isAdmin = $isAdmin;
 
@@ -162,7 +163,7 @@ class Participant extends User
     /**
      * @return bool|null
      */
-    public function getIsActif(): ?bool
+    public function getIsActif()
     {
         return $this->isActif;
     }
@@ -171,7 +172,7 @@ class Participant extends User
      * @param bool $isActif
      * @return $this
      */
-    public function setIsActif(bool $isActif): self
+    public function setIsActif(bool $isActif)
     {
         $this->isActif = $isActif;
 
