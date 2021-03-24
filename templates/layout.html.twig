@@ -27,7 +27,7 @@
             <ul>
             {% block nav %}
                <li> <a href="{{ path('accueil') }}">Accueil</a></li>
-               <li> <a href="#">Mon profil</a></li>
+               <li> <a href="{{ path('profile', {'id':app.user.id}) }}">Mon profil</a></li>
                 <li><a href="{{ path('app_logout')}}">Se déconnecter</a></li>
             {% endblock %}
             </ul>

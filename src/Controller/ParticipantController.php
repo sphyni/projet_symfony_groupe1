@@ -3,12 +3,11 @@
 namespace App\Controller;
 
 use App\Entity\Participant;
-use App\Entity\User;
 use App\Form\ModificationUserType;
 use App\Form\MonProfileType;
 use Doctrine\ORM\EntityManagerInterface;
-use http\Client\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
