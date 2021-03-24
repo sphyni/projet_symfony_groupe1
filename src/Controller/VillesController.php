@@ -2,9 +2,9 @@
 
 namespace App\Controller;
 
-use App\Entity\Site;
 use App\Entity\Ville;
 use App\Form\GestionVilleType;
+use App\Form\CreateVilleType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -20,10 +20,30 @@ class VillesController extends AbstractController
     /**
      * @Route("/villes", name="villes")
      */
-    public function index(): Response
+
+    public function createVille(Request $request,EntityManagerInterface $entityManager): Response
     {
-        return $this->render('villes/create-lieu.html.twig', [
-            'controller_name' => 'VillesController',
+        $ville = new Ville;
+        $villeForm     = $this->createForm(CreateVilleType::class, $ville);
+
+        $villeForm->handleRequest($request);
+
+
+        if ($villeForm->isSubmitted() && $villeForm->isValid()){
+
+
+            $entityManager->persist($ville);
+            $entityManager->flush();
+
+            $this->addFlash('succes', 'Sortie publiée');
+
+            return $this->redirectToRoute('lieu');
+        }
+
+
+        return $this->render('villes/create-ville.html.twig', [
+            'villeForm'   => $villeForm->createView(),
+
         ]);
     }
 
