@@ -6,6 +6,7 @@ use App\Data\SearchData;
 use App\Entity\Sortie;
 use App\Entity\Etat;
 use App\Form\AnnulerType;
+use App\Form\InscriptionType;
 use App\Form\SearchForm;
 use App\Repository\SortieRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -74,16 +75,9 @@ class AcceuilController extends AbstractController
         $annulerForm    = $this->createForm(AnnulerType::class, $sortie);
         $annulerForm->handleRequest($request);
 
-       // $data= $annulerForm->getData();
-        /**
-        $entityManager = $this->getDoctrine()->getManager();
-        $sortie = $entityManager->getRepository(Sortie::class)->find($id);
-        $annulerForm = $this->createForm(AnnulerType::class, $sortie);
-        $annulerForm->handleRequest($sortie);
-        **/
-
         if ($annulerForm->isSubmitted() && $annulerForm->isValid()){
             $etat =$this->findEtatAnnule($entityManager);
+
             $sortie->setEtat($etat);
 
             $entityManager->persist($sortie);
@@ -98,5 +92,24 @@ class AcceuilController extends AbstractController
         ]);
     }
 
+    public function inscription(int $id,EntityManagerInterface $entityManager,Request $request)
+    {
+        $repository =$entityManager->getRepository(Sortie::class);
+        $participant = $repository->findOneBy(['username'=> $this->getUser()->getUsername()]);
+        $sortie = $repository->find($id);
 
+        $sortieForm = $this->createForm(InscriptionType::class, $sortie);
+        $sortieForm->handleRequest($request);
+
+        if ($sortieForm->isSubmitted() && $sortieForm->isValid() && $sortieForm->get('inscrit')->isClicked()){
+            $sortie->setInscrits($participant);
+
+            $entityManager->persist($sortie);
+            $entityManager->flush();
+        return $this->redirectToRoute('accueil');
+        }
+        return $this->render('sorties/annuler.html.twig', [
+            'sortie' => $sortie,
+        ]);
+    }
 }
