@@ -17,18 +17,19 @@
 
             <tr>
                 <td>{{ site.getNom() }}</td>
-                <td><a href="#">Modifier</a> - <a href="#">Supprimer</a> </td>
+                <td><a href="{{ url("site_edit", {'id':site.getId()}) }}">Modifier</a> - <a href="{{ url("site_delete", {'id':site.getId()}) }}">Supprimer</a> </td>
             </tr>
 
-
         {% endfor %}
+
+
 
         <tr>
             <td>
                 {{ form_start (siteForm) }}
                 {{ form_widget(siteForm) }}
             </td>
-            <td><button type="submit">Ajouter</button> </td>
+            <td><button type="submit">Enregistrer</button> </td>
             {{ form_end(siteForm) }}
         </tr>
     </table>

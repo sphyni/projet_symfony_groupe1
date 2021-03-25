@@ -35,8 +35,7 @@ class SearchForm extends AbstractType
                 'label'=> 'Site : ',
                 'required'=> false,
                 'class'=> Site::class,
-                'expanded' => true,
-                'multiple' => true,
+
             ])
 
 
