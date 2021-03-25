@@ -14,7 +14,7 @@ class SearchData
     /**
      * @var boolean
      */
-    public $organisateur =false;
+    public $organisateurs =false;
 
     /**
      * @var boolean
@@ -26,7 +26,7 @@ class SearchData
      */
     public function Organisateur(): bool
     {
-        return $this->organisateur;
+        return $this->organisateurs;
     }
 
     /**

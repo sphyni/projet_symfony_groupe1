@@ -47,7 +47,10 @@ class SearchForm extends AbstractType
                 'required'=>false
             ])
 
-
+            ->add('organisateurs',CheckboxType::class,[
+                'label' => 'je suis organisateur',
+                'required'=>false
+            ])
 
         ;
     }

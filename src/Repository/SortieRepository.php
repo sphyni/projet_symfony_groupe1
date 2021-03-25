@@ -44,7 +44,6 @@ class SortieRepository extends ServiceEntityRepository
             $query=$query
                 ->andWhere('n.nom LIKE :r')
                 ->setParameter('r',"%{$search->r}%");
-
         }
 
        if (!empty($search->site)){
@@ -58,6 +57,11 @@ class SortieRepository extends ServiceEntityRepository
                 ->setParameter('p', $userInSession);
         }
 
+        if (!empty($search->notParticipant)) {
+            $query = $query
+                ->andWhere(':u NOT MEMBER OF o.participants')
+                ->setParameter('u', $userInSession);
+        }
         return $query->getQuery()->getResult();
     }
 
