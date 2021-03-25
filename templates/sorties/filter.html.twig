@@ -1,13 +1,11 @@
-
-
-
 {{ form_start(form) }}
-
+<div class="filter-champ-recherche">
     {{  form_row(form.r) }}
-
     {{ form_row(form.site) }}
-
-
-<button type="'submit" class="btn btn-primary w-100">Rechercher</button>
-
+</div>
+<div class="filter-checkbox">
+    {{ form_row(form.participants) }}
+    {{ form_row(form.organisateurs) }}
+</div>
+<button  type="'submit" class="btn btn-primary w-100">Rechercher</button>
 {{ form_end (form)}}

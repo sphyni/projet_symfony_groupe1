@@ -2,15 +2,24 @@
 {% block title %}
 <title>Accueil!</title>
 {% endblock %}
+{% block nav %}
+    <li> <a href="{{ path('sites') }}">sites</a></li>
+    <li> <a href={{ path('villes') }}>villes</a></li>
+    {{ parent() }}
+{% endblock %}
+
 {% block main %}
-    <div class="user_name">
+    <div class="index-user_name">
       Date du jour : {{ "now"|date('d-m-y')}} <br>
       Participant : {{ app.user.username }}
     </div>
     <div class="accueil">
 
         {% include 'sorties/filter.html.twig' with {form: form} only%}
-        <h1>Sorties</h1>
+
+        <h1 id="index-h1">Sorties</h1>
+
+        <div class="index-table">
             <table>
                 <cpation>Liste de Sorties</cpation>
                 <colgroup span="8" class="columns"></colgroup>
@@ -49,6 +58,7 @@
                 </tbody>
                 {% endfor %}
             </table>
-        <button><a href="{{ path('sorties') }}">Créer une sortie</a></button>
+        </div>
+        <button class="index-buton"><a href="{{ path('sorties') }}">Créer une sortie</a></button>
     </div>
 {% endblock %}

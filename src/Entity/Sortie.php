@@ -194,7 +194,7 @@ class Sortie
      * @param string $nom
      * @return $this
      */
-    public function setNom(string $nom): self
+    public function setNom(string $nom)
     {
         $this->nom = $nom;
 

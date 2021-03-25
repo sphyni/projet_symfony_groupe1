@@ -4,6 +4,7 @@ namespace App\Repository;
 
 use App\Data\SearchData;
 use App\Entity\Sortie;
+use App\Entity\User;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -26,27 +27,40 @@ class SortieRepository extends ServiceEntityRepository
 
 
     /**
-     * @param Sortie $search
+     *
      * @return array
      */
-    public function findSearch(Sortie $search): array
+    public function findSearch($search, User $userInSession): array
     {
         $query = $this
             ->createQueryBuilder('n')
+            ->select('s','p','n')
             ->join('n.site','s')
-            ->addselect('s');
+            ->join('n.participants','p')
+        ;
+
 
         if (!empty($search->r)) {
             $query=$query
-                ->andWhere('s.nom LIKE :r')
+                ->andWhere('n.nom LIKE :r')
                 ->setParameter('r',"%{$search->r}%");
-
         }
 
-        if (!empty($search->site)){
+       if (!empty($search->site)){
             $query = $query
                 ->andWhere('s.id IN (:site)')
                 ->setParameter('site', $search->site);
+        }
+        if (!empty($search->notParticipant )){
+            $query = $query
+                ->andWhere(':p MEMBER OF n.participants')
+                ->setParameter('p', $userInSession);
+        }
+
+        if (!empty($search->notParticipant)) {
+            $query = $query
+                ->andWhere(':u NOT MEMBER OF o.participants')
+                ->setParameter('u', $userInSession);
         }
         return $query->getQuery()->getResult();
     }

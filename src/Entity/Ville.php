@@ -33,49 +33,35 @@ class Ville
     /**
      * @var ArrayCollection
      * @ORM\OneToMany  (targetEntity="App\Entity\Lieu", mappedBy="ville")
-     * @Assert\Type(type="App\Entity\Etat")
-     * @Assert\Valid
      */
     private $lieux;
 
-    /**
-     * @return ArrayCollection
-     */
-    public function getLieux(): ?ArrayCollection
+
+    public function getLieux()
     {
         return $this->lieux;
     }
 
-    /**
-     * @param ArrayCollection $lieux
-     */
-    public function setLieux(?ArrayCollection $lieux): void
-    {
+
+    public function setLieux($lieux) {
         $this->lieux = $lieux;
     }
 
 
-    /**
-     * @return int|null
-     */
-    public function getId(): ?int
+
+    public function getId()
     {
         return $this->id;
     }
 
-    /**
-     * @return string|null
-     */
-    public function getNom(): ?string
+
+    public function getNom()
     {
         return $this->nom;
     }
 
-    /**
-     * @param string $nom
-     * @return $this
-     */
-    public function setNom(string $nom): self
+
+    public function setNom($nom)
     {
         $this->nom = $nom;
 

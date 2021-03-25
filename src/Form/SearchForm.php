@@ -6,8 +6,10 @@ namespace App\Form;
 
 
 
+
+use App\Entity\Participant;
 use App\Entity\Site;
-use App\Entity\Sortie;
+use App\DataSearch\SearchData;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
@@ -35,12 +37,20 @@ class SearchForm extends AbstractType
                 'label'=> 'Site : ',
                 'required'=> false,
                 'class'=> Site::class,
-                //'expanded' => true,
-                //'multiple' => true,
+                'choice_label'=>'nom'
+
+
             ])
 
+           ->add('participants',CheckboxType::class,[
+                'label' => 'je suis inscrite',
+                'required'=>false
+            ])
 
-
+            ->add('organisateurs',CheckboxType::class,[
+                'label' => 'je suis organisateur',
+                'required'=>false
+            ])
 
         ;
     }
@@ -49,7 +59,7 @@ class SearchForm extends AbstractType
     {
       //  parent::configureOptions($resolver);
       $resolver->setDefaults([
-        'data_class' => Sortie::class,
+        'data_class' => SearchData::class,
         'method' => 'GET',
         'crsf_protection' =>false
       ] );
