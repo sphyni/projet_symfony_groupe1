@@ -35,7 +35,7 @@ class VillesController extends AbstractController
             $entityManager->persist($ville);
             $entityManager->flush();
 
-            $this->addFlash('succes', 'Sortie publiée');
+            $this->addFlash('succes', 'ville créée');
 
             return $this->redirectToRoute('lieu');
         }
@@ -74,6 +74,47 @@ class VillesController extends AbstractController
         return $this->render('villes/list.html.twig', [
             'villes' => $allVilles,
             'controller_name' => 'VillesController',
+            'villeForm' => $villeForm->createView(),
+        ]);
+    }
+
+    /**
+     * @Route("/villesdelete/{id}", name="ville_delete", requirements={"id":"\d+"})
+     */
+    public function delete(int $id){
+        $entityManager = $this->getDoctrine()->getManager();
+        $ville = $this->getDoctrine()->getRepository(\Proxies\__CG__\App\Entity\Ville::class);
+        $ville=$ville->find($id);
+
+        $entityManager->remove($ville);
+        $entityManager->flush();
+
+        return $this->redirectToRoute("villes");
+    }
+
+    /**
+     * @Route("/villeEdit/{id}", name="ville_edit", requirements={"id":"\d+"})
+     */
+    public function update(Request $request, int $id)
+    {
+        $entityManager = $this->getDoctrine()->getManager();
+        $repository =$entityManager->getRepository(Ville::class);
+        $ville = $repository->find($id);
+
+        $villeForm = $this->createForm(GestionVilleType::class, $ville);
+        $villeForm->handleRequest($request);
+        $allVille = $repository->findAll();
+
+        if ($villeForm->isSubmitted() && $villeForm->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $ville = $villeForm->getData();
+            $em->flush();
+
+            return $this->redirectToRoute("villes");
+        }
+        $this->addFlash('success', 'ville modifiée');
+        return $this->render('villes/list.html.twig', [
+            'villes' => $allVille,
             'villeForm' => $villeForm->createView(),
         ]);
     }

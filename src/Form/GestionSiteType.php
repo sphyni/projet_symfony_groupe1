@@ -24,6 +24,7 @@ class GestionSiteType extends AbstractType
         ;
     }
 
+
     /**
      * @param OptionsResolver $resolver
      */

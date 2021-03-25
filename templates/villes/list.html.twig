@@ -9,9 +9,9 @@
 
     <table>
         <tr>
-            <td> villes </td>
-            <td> codes postal </td>
-            <td> Actions </td>
+            <td> <strong>villes</strong> </td>
+            <td> <strong>codes postal</strong> </td>
+            <td> <strong>Actions</strong> </td>
         </tr>
         {% for ville in villes %}
 
@@ -19,7 +19,7 @@
             <tr>
                 <td>{{ ville.getNom() }}</td>
                 <td>{{ ville.getCodePostal() }}</td>
-                <td><a href="#">Modifier</a> - <a href="#">Supprimer</a> </td>
+                <td><a href="{{ url("ville_edit", {'id':ville.getId()}) }}">Modifier</a> - <a href="{{ url("ville_delete", {'id':ville.getId()}) }}">Supprimer</a> </td>
             </tr>
 
 
@@ -30,7 +30,7 @@
                 {{ form_start (villeForm) }}
                 {{ form_widget(villeForm) }}
             </td>
-            <td><button type="submit">Ajouter</button> </td>
+            <td><button type="submit">Enregistrer</button> </td>
             {{ form_end(villeForm) }}
         </tr>
     </table>
