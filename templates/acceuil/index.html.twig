@@ -8,6 +8,8 @@
       Participant : {{ app.user.username }}
     </div>
     <div class="accueil">
+
+        {% include 'sorties/filter.html.twig' with {form: form} only%}
         <h1>Sorties</h1>
             <table>
                 <cpation>Liste de Sorties</cpation>
@@ -34,7 +36,7 @@
                         <td>{{ sortie.etat().getLibelle() }}</td>
                         <td>X</td>
                         <td>{{ sortie.participants().getNom() }}</td>
-                        <td><a href="#">Afficher</a></td>
+                        <td><a href={{ path('details',{"id":sortie.getId()}) }}>Afficher</a></td>
                     </tr>
                 </tbody>
                 {% endfor %}

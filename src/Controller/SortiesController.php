@@ -20,18 +20,20 @@ class SortiesController extends AbstractController
 {
 
 
-    public function findEtatCreee(EntityManagerInterface $entityManager){
-        $repository         = $entityManager->getRepository(Etat::class);
-        $etatCreee          = $repository->findOneBy([
+    public function findEtatCreee(EntityManagerInterface $entityManager)
+    {
+        $repository = $entityManager->getRepository(Etat::class);
+        $etatCreee = $repository->findOneBy([
             'libelle' => 'Créée'
         ]);
 
         return $etatCreee;
     }
 
-    public function findEtatOuvert(EntityManagerInterface $entityManager){
-        $repository         = $entityManager->getRepository(Etat::class);
-        $etatOuvert         = $repository->findOneBy([
+    public function findEtatOuvert(EntityManagerInterface $entityManager)
+    {
+        $repository = $entityManager->getRepository(Etat::class);
+        $etatOuvert = $repository->findOneBy([
             'libelle' => 'Ouvert'
         ]);
         return $etatOuvert;
@@ -45,18 +47,18 @@ class SortiesController extends AbstractController
      */
     public function createSortie(Request $request, EntityManagerInterface $entityManager): Response
     {
-        $repository         = $entityManager->getRepository(User::class);
-        $siteOrganisateur   = $repository->findOneBy(['username'=>$this->getUser()->getUsername()]);
-        $siteId             = $siteOrganisateur->getSite();
+        $repository = $entityManager->getRepository(User::class);
+        $siteOrganisateur = $repository->findOneBy(['username' => $this->getUser()->getUsername()]);
+        $siteId = $siteOrganisateur->getSite();
 
-        $sortie             = new Sortie;
+        $sortie = new Sortie;
 
-        $sortieForm         = $this->createForm(CreateSortiesType::class, $sortie);
+        $sortieForm = $this->createForm(CreateSortiesType::class, $sortie);
 
         $sortieForm->handleRequest($request);
 
 
-        if ($sortieForm->isSubmitted() && $sortieForm->isValid() && $sortieForm->get('save')->isClicked()){
+        if ($sortieForm->isSubmitted() && $sortieForm->isValid() && $sortieForm->get('save')->isClicked()) {
 
             $etat = $this->findEtatCreee($entityManager);
 
@@ -72,7 +74,7 @@ class SortiesController extends AbstractController
 
             return $this->redirectToRoute('accueil');
 
-        }elseif ($sortieForm->isSubmitted() && $sortieForm->isValid() && $sortieForm->get('add')->isClicked()){
+        } elseif ($sortieForm->isSubmitted() && $sortieForm->isValid() && $sortieForm->get('add')->isClicked()) {
 
             $etat = $this->findEtatOuvert($entityManager);
 
@@ -91,9 +93,25 @@ class SortiesController extends AbstractController
 
 
         return $this->render('sorties/create-sortie.html.twig', [
-            'sortieForm'   => $sortieForm->createView(),
+            'sortieForm' => $sortieForm->createView(),
 
         ]);
+    }
+
+    /**
+     * @Route("/acceuil/sortie/{id}", name="details", requirements={"id":"\d+"})
+     */
+    public function details(int $id, EntityManagerInterface $em):response
+    {
+
+        $repository=$em->getRepository(Sortie::class);
+
+        $sortie = $repository->find($id);
+
+        return $this->render('sorties/details.html.twig',[
+            'sortie' => $sortie
+        ]);
+
     }
 
 }

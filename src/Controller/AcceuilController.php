@@ -2,11 +2,15 @@
 
 namespace App\Controller;
 
+use App\Data\SearchData;
 use App\Entity\Sortie;
+use App\Form\SearchForm;
 use App\Repository\SortieRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
+
 use Symfony\Component\Routing\Annotation\Route;
 
 class AcceuilController extends AbstractController
@@ -16,12 +20,34 @@ class AcceuilController extends AbstractController
      * @param SortieRepository $repository
      * @return Response
      */
-    public function index(EntityManagerInterface $em): Response
+    public function index(SortieRepository $repository,EntityManagerInterface $em, Request $request): Response
     {
-        $repository = $em->getRepository(Sortie::class);
-        $sorties = $repository->findAll();
+        $data = new Sortie();
+        $form = $this->createForm(SearchForm::class, $data);
+        $form->handleRequest($request);
+
+        $sorties = $repository->findSearch($data);
         return $this->render('acceuil/index.html.twig',[
             'sorties' =>$sorties,
+            'form' => $form->createView()
                     ] );
-}
+    }
+
+
+    /**
+     * @Route("/sortie/{id}", name="details", requirements={"id":"\d+"})
+     */
+    public function details(int $id, EntityManagerInterface $em):response
+    {
+
+        $repository=$em->getRepository(Sortie::class);
+
+        $sortie = $repository->find($id);
+
+        return $this->render('sorties/details.html.twig',[
+            'sortie' => $sortie
+        ]);
+
+    }
+
 }
