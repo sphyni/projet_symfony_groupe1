@@ -2,7 +2,7 @@
 
 namespace App\Controller;
 
-use App\Data\SearchData;
+use App\DataSearch\SearchData;
 use App\Entity\Sortie;
 use App\Form\SearchForm;
 use App\Repository\SortieRepository;
@@ -22,11 +22,12 @@ class AcceuilController extends AbstractController
      */
     public function index(SortieRepository $repository,EntityManagerInterface $em, Request $request): Response
     {
-        $data = new Sortie();
+        $data = new SearchData();
+        $UserInSession= $this->getUser();
         $form = $this->createForm(SearchForm::class, $data);
         $form->handleRequest($request);
 
-        $sorties = $repository->findSearch($data);
+        $sorties = $repository->findSearch($data, $UserInSession);
         return $this->render('acceuil/index.html.twig',[
             'sorties' =>$sorties,
             'form' => $form->createView()
