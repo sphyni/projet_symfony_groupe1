@@ -7,7 +7,7 @@ namespace App\Form;
 
 
 
-use App\Entity\Participant;
+
 use App\Entity\Site;
 use App\DataSearch\SearchData;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
@@ -26,8 +26,7 @@ class SearchForm extends AbstractType
         $builder
             ->add('r', TextType::class,[
                     'label' => 'Le nom de la sortie contient : ',
-                    'required' => false,
-
+                    'required'=> false,
                     'attr' => [
                         'placeHolder' => 'Rechercher'
                     ]
@@ -57,7 +56,7 @@ class SearchForm extends AbstractType
 
     public function configureOptions(OptionsResolver $resolver)
     {
-      //  parent::configureOptions($resolver);
+
       $resolver->setDefaults([
         'data_class' => SearchData::class,
         'method' => 'GET',

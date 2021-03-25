@@ -36,7 +36,7 @@ class SortieRepository extends ServiceEntityRepository
             ->createQueryBuilder('n')
             ->select('s','p','n')
             ->join('n.site','s')
-            ->join('n.participants','p')
+            ->join('n.participant','p')
         ;
 
 
@@ -51,7 +51,7 @@ class SortieRepository extends ServiceEntityRepository
                 ->andWhere('s.id IN (:site)')
                 ->setParameter('site', $search->site);
         }
-        if (!empty($search->notParticipant )){
+        if (!empty($search->Participant )){
             $query = $query
                 ->andWhere(':p MEMBER OF n.participants')
                 ->setParameter('p', $userInSession);
@@ -59,8 +59,8 @@ class SortieRepository extends ServiceEntityRepository
 
         if (!empty($search->notParticipant)) {
             $query = $query
-                ->andWhere(':u NOT MEMBER OF o.participants')
-                ->setParameter('u', $userInSession);
+                ->andWhere(':p NOT MEMBER OF n.participants')
+                ->setParameter('p', $userInSession);
         }
         return $query->getQuery()->getResult();
     }
