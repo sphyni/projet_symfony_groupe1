@@ -4,6 +4,8 @@ namespace App\Controller;
 
 use App\Data\SearchData;
 use App\Entity\Sortie;
+use App\Entity\Etat;
+use App\Form\AnnulerType;
 use App\Form\SearchForm;
 use App\Repository\SortieRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -49,5 +51,52 @@ class AcceuilController extends AbstractController
         ]);
 
     }
+
+    public function findEtatAnnule(EntityManagerInterface $entityManager)
+    {
+        $repository = $entityManager->getRepository(Etat::class);
+        $etatAnnulee = $repository->findOneBy([
+            'libelle' => 'Annulee'
+        ]);
+
+        return $etatAnnulee;
+    }
+
+    /**
+     * @Route("/sortie/{id}", name="annuler", requirements={"id":"\d+"})
+     */
+    public function annuler(int $id, EntityManagerInterface $entityManager, Request $request):response
+    {
+        //Affichage d'information sur la sortie
+        $repository     = $entityManager->getRepository(Sortie::class);
+        $sortie         = $repository->find($id);
+        //Formulaire
+        $annulerForm    = $this->createForm(AnnulerType::class, $sortie);
+        $annulerForm->handleRequest($request);
+
+       // $data= $annulerForm->getData();
+        /**
+        $entityManager = $this->getDoctrine()->getManager();
+        $sortie = $entityManager->getRepository(Sortie::class)->find($id);
+        $annulerForm = $this->createForm(AnnulerType::class, $sortie);
+        $annulerForm->handleRequest($sortie);
+        **/
+
+        if ($annulerForm->isSubmitted() && $annulerForm->isValid()){
+            $etat =$this->findEtatAnnule($entityManager);
+            $sortie->setEtat($etat);
+
+            $entityManager->persist($sortie);
+            $entityManager->flush();
+
+            return $this->redirectToRoute('accueil');
+        }
+
+        return $this->render('sorties/annuler.html.twig', [
+            'sortie' => $sortie,
+            'sortieForm' => $annulerForm->createView(),
+        ]);
+    }
+
 
 }

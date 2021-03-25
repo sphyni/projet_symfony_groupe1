@@ -92,6 +92,22 @@ class Sortie
     private $inscrits;
 
     /**
+     * @return mixed
+     */
+    public function getInscrits()
+    {
+        return $this->inscrits;
+    }
+
+    /**
+     * @param mixed $inscrits
+     */
+    public function setInscrits($inscrits): void
+    {
+        $this->inscrits = $inscrits;
+    }
+
+    /**
      * @return Participant
      */
     public function getParticipants(): Participant

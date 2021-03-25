@@ -32,11 +32,17 @@
                         <td>{{ sortie.getNom() }}</td>
                         <td>{{ sortie.getDateHeureDebut()|date('d-m-y  h:i') }}</td>
                         <td>{{ sortie.getDateLimiteInscription()|date('d-m-y')}}</td>
-                        <td>{{ sortie.getNbInscriptionsMax() }}</td>
+                        <td>{{ sortie.participants().getInscrits() }}/{{ sortie.getNbInscriptionsMax() }}</td>
                         <td>{{ sortie.etat().getLibelle() }}</td>
                         <td>X</td>
                         <td>{{ sortie.participants().getNom() }}</td>
-                        <td><a href={{ path('details',{"id":sortie.getId()}) }}>Afficher</a></td>
+                        <td>
+                            <a href={{ path('details',{"id":sortie.getId()}) }}>Afficher</a>
+                            {% if(sortie.participants().getUsername() == app.user.username) %}
+                                <a href={{ path('annuler',{"id":sortie.getId()}) }}>Annuler</a>
+                            {% endif %}
+                            <a></a>
+                        </td>
                     </tr>
                 </tbody>
                 {% endfor %}

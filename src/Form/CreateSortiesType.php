@@ -47,9 +47,6 @@ class CreateSortiesType extends AbstractType
                 'label'=>'Description et infos : ',
                 'required'=> true,
             ])
-            //->add('historique',HiddenType::class)
-            //->add('etat', CreateEtatType::class)
-            //->add('site',CreateSiteType::class)
             ->add('lieu',EntityType::class,[
                 'class' => Lieu::class,
             ])
