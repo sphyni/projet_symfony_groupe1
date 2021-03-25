@@ -198,6 +198,22 @@ class Participant extends User
     }
 
     /**
+     * @return mixed
+     */
+    public function getInscrits()
+    {
+        return $this->inscrits;
+    }
+
+    /**
+     * @param mixed $inscrits
+     */
+    public function setInscrits($inscrits): void
+    {
+        $this->inscrits = $inscrits;
+    }
+
+    /**
      * @param bool $isActif
      * @return $this
      */

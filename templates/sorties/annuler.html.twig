@@ -1,0 +1,17 @@
+{% extends 'layout.html.twig' %}
+
+{% block main %}
+    <h1>Annuler une sortie</h1>
+    <div class="annuler_info">
+        <a>Nom de la sortie : {{ sortie.getNom() }}</a><br>
+        <a>Date de la sortie : {{ sortie.getDateHeureDebut()|date('d-m-y h:i') }}</a><br>
+        <a>Ville organisatrice : {{ sortie.getSite() }}</a><br>
+        <a>Lieu : {{ sortie.lieu().getNom() }}</a>
+    </div>
+    <div class="annuler_form">
+        {{ form_start (sortieForm) }}
+        {{ form_widget(sortieForm) }}
+        <button><a href="{{ path('accueil') }}">Annuler</a></button>
+        {{ form_end(sortieForm) }}
+    </div>
+{% endblock %}
