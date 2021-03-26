@@ -28,11 +28,8 @@ class ParticipantController extends AbstractController
     #[Route('/users', name: 'user_list')]
     public function list(EntityManagerInterface $entityManager): Response
     {
-
-
         $repository = $entityManager->getRepository(Participant::class);
         $users = $repository->findAll();
-//dd($users);
 
         return $this->render('users/list.html.twig', [
             'users' => $users
@@ -44,11 +41,10 @@ class ParticipantController extends AbstractController
      */
     public function details(int $id, EntityManagerInterface $em):response
     {
-//dd($id);
         $repository=$em->getRepository(Participant::class);
-        //dd($repository);
+
         $user = $repository->find($id);
-//dd($user);
+
         return $this->render('users/detail.html.twig',[
             'user' => $user
         ]);
@@ -82,12 +78,11 @@ class ParticipantController extends AbstractController
     {
         $entityManager =$this->getDoctrine()->getManager();
         $user = $entityManager->getRepository(Participant::class)->find($id);
+
         $modificationForm = $this->createForm(ModificationUserType::class, $user);
         $modificationForm->handleRequest($request);
+
         $data=$modificationForm->getData();
-
-        //dd($modificationForm);
-
 
         if ($modificationForm->isSubmitted() && $modificationForm->isValid()) {
 
@@ -102,12 +97,10 @@ class ParticipantController extends AbstractController
             ]);
         }
 
-
         return $this->render('users/modification.html.twig',[
             'user' => $user,
             'modificationForm'=>$modificationForm->createView()
         ]);
-
 
     }
 

@@ -19,7 +19,6 @@ class ProfilEditType extends AbstractType
             ->add('Prenom')
             ->add('telephone')
             ->add('Mail')
-            //->add('isAdmin')
             ->add('isActif')
             ->add('site')
         ;

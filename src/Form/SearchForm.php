@@ -27,31 +27,24 @@ class SearchForm extends AbstractType
             ->add('r', TextType::class,[
                     'label' => 'Le nom de la sortie contient : ',
                     'required' => false,
-
                     'attr' => [
                         'placeHolder' => 'Rechercher'
                     ]
                     ])
-
             ->add('site' ,EntityType::class,[
                 'label'=> 'Site : ',
                 'required'=> false,
                 'class'=> Site::class,
                 'choice_label'=>'nom'
-
-
             ])
-
            ->add('participants',CheckboxType::class,[
                 'label' => 'je suis inscrite',
                 'required'=>false
             ])
-
             ->add('organisateurs',CheckboxType::class,[
                 'label' => 'je suis organisateur',
                 'required'=>false
             ])
-
         ;
     }
 

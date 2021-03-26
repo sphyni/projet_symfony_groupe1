@@ -18,18 +18,9 @@ class CreateAccueilType extends AbstractType
     {
         $builder
             ->add('nom')
-            //->add('dateLimiteInscription')
-            //->add('duree')
             ->add('dateHeureDebut')
-            //->add('nbInscriptionsMax')
-            //->add('infosSortie')
-            //->add('historique')
-
-
-
             ->add('Rechercher', SubmitType::class)
-            //->add('lieu')
-            //->add('site')
+
         ;
     }
 

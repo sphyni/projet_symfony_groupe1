@@ -55,7 +55,7 @@ class Participant extends User
     private $sortie;
 
     /**
-     *  @ORM\ManyToMany(targetEntity="App\Entity\Sortie")
+     *  @ORM\ManyToMany(targetEntity="App\Entity\Sortie", mappedBy="inscrits" )
      */
     private $inscrits;
 
@@ -210,7 +210,7 @@ class Participant extends User
      */
     public function setInscrits($inscrits): void
     {
-        $this->inscrits = $inscrits;
+        $this->inscrits[] = $inscrits;
     }
 
     /**
@@ -222,5 +222,8 @@ class Participant extends User
         $this->isActif = $isActif;
 
         return $this;
+    }
+    public function __construct(){
+        $this->inscrits = new ArrayCollection();
     }
 }

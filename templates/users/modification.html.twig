@@ -1,15 +1,6 @@
 {% extends 'layout.html.twig' %}
-
-{% block title_page %} {{ user.getUsername() }} {% endblock %}
-
-
 {% block main %}
-
     {{ form_start(modificationForm) }}
     {{ form_widget(modificationForm) }}
-
     {{ form_end(modificationForm) }}
-
-
-
 {% endblock %}

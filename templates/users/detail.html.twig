@@ -1,11 +1,5 @@
 {% extends 'layout.html.twig' %}
-
-{# {% block title_page %} {{ user.getPrenom() }} {{ user.getNom() }} {% endblock %} #}
-{% block title_page %} {{ user.getUsername() }} {% endblock %}
-
-
 {% block main %}
-
 <table>
     <tr>
         <td>pseudo</td>
@@ -45,7 +39,4 @@
     {% endif %}
     <button type="button" id="btnRetour" class="button btn-sm" ><a href="{{ path('accueil') }}">Retour</a></button>
 </div>
-
-
-
 {% endblock %}
