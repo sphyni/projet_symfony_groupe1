@@ -1,9 +1,4 @@
 {% extends 'layout.html.twig' %}
-
-{# {% block title_page %} {{ user.getPrenom() }} {{ user.getNom() }} {% endblock %} #}
-{% block title_page %} {{ user.getUsername() }} {% endblock %}
-
-
 {% block main %}
 
     <table>
@@ -61,9 +56,4 @@
             <td>{{ sortie.lieu().getLongitude() }}</td>
         </tr>
     </table>
-
-
-
-
-
 {% endblock %}

@@ -1,12 +1,8 @@
 {% extends 'layout.html.twig' %}
-
-
 {% block title_page %}
    gérer les villes
 {% endblock %}
-
 {% block main %}
-
     <table>
         <tr>
             <td> <strong>villes</strong> </td>
@@ -14,17 +10,12 @@
             <td> <strong>Actions</strong> </td>
         </tr>
         {% for ville in villes %}
-
-
             <tr>
                 <td>{{ ville.getNom() }}</td>
                 <td>{{ ville.getCodePostal() }}</td>
                 <td><a href="{{ url("ville_edit", {'id':ville.getId()}) }}">Modifier</a> - <a href="{{ url("ville_delete", {'id':ville.getId()}) }}">Supprimer</a> </td>
             </tr>
-
-
         {% endfor %}
-
         <tr>
             <td>
                 {{ form_start (villeForm) }}

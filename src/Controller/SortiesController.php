@@ -54,7 +54,6 @@ class SortiesController extends AbstractController
         $sortie = new Sortie;
 
         $sortieForm = $this->createForm(CreateSortiesType::class, $sortie);
-
         $sortieForm->handleRequest($request);
 
 
@@ -103,9 +102,7 @@ class SortiesController extends AbstractController
      */
     public function details(int $id, EntityManagerInterface $em):response
     {
-
         $repository=$em->getRepository(Sortie::class);
-
         $sortie = $repository->find($id);
 
         return $this->render('sorties/details.html.twig',[

@@ -33,33 +33,33 @@ class SortieRepository extends ServiceEntityRepository
     public function findSearch($search, User $userInSession): array
     {
         $query = $this
-            ->createQueryBuilder('n')
-            ->select('s','p','n')
-            ->join('n.site','s')
-            ->join('n.participant','p')
+            ->createQueryBuilder('o')
+            ->select('s','p','o')
+            ->join('o.site','s')
+            ->join('o.participants','p')
         ;
 
 
         if (!empty($search->r)) {
             $query=$query
-                ->andWhere('n.nom LIKE :r')
+                ->andWhere('o.nom LIKE :r')
                 ->setParameter('r',"%{$search->r}%");
         }
 
        if (!empty($search->site)){
             $query = $query
-                ->andWhere('s.id IN (:site)')
+                ->andWhere('s.nom = :site')
                 ->setParameter('site', $search->site);
         }
         if (!empty($search->Participant )){
             $query = $query
-                ->andWhere(':p MEMBER OF n.participants')
+                ->andWhere(':p MEMBER OF o.participants')
                 ->setParameter('p', $userInSession);
         }
 
         if (!empty($search->notParticipant)) {
             $query = $query
-                ->andWhere(':p NOT MEMBER OF n.participants')
+                ->andWhere(':p NOT MEMBER OF o.participants')
                 ->setParameter('p', $userInSession);
         }
         return $query->getQuery()->getResult();

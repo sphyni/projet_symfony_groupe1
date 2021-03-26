@@ -21,17 +21,14 @@ class SitesController extends AbstractController
      */
     public function listAnCreate(Request $request, EntityManagerInterface $em, EntityManagerInterface $entityManager): response
     {
-
-//dd('coucou');
         $repository = $em->getRepository(Site::class);
         $allSites = $repository->findAll();
 
         $site = new Site;
-        $siteForm = $this->createForm(GestionSiteType::class, $site);
-//dd($site);
 
+        $siteForm = $this->createForm(GestionSiteType::class, $site);
         $siteForm->handleRequest($request);
-//dd($site);
+
         if ($siteForm->isSubmitted() && $siteForm->isValid()) {
             $entityManager->persist($site);
             $entityManager->flush();
@@ -39,7 +36,6 @@ class SitesController extends AbstractController
             $this->addFlash('success', 'site ajouté');
             return  $this->redirectToRoute('sites');
         }
-//dd($site);
         return $this->render('sites/list.html.twig', [
             'sites' => $allSites,
             'controller_name' => 'SitesController',
@@ -53,6 +49,7 @@ class SitesController extends AbstractController
     public function delete(int $id){
         $entityManager = $this->getDoctrine()->getManager();
         $site = $entityManager->getRepository(Site::class);
+
         $site=$site->find($id);
 
         $entityManager->remove($site);
@@ -68,11 +65,14 @@ class SitesController extends AbstractController
     {
         $entityManager = $this->getDoctrine()->getManager();
         $repository =$entityManager->getRepository(Site::class);
+
         $site = $repository->find($id);
 
         $siteForm = $this->createForm(GestionSiteType::class, $site);
         $siteForm->handleRequest($request);
+
         $allSites = $repository->findAll();
+
         if ($siteForm->isSubmitted() && $siteForm->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $site = $siteForm->getData();

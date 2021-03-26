@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\SortieRepository;
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -87,7 +88,8 @@ class Sortie
 
 
     /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\Participant")
+     * @ORM\ManyToMany(targetEntity="App\Entity\Participant", inversedBy="inscrits")
+     * @ORM\JoinTable(name="sortie_participant")
      */
     private $inscrits;
 
@@ -104,7 +106,7 @@ class Sortie
      */
     public function setInscrits($inscrits): void
     {
-        $this->inscrits = $inscrits;
+        $this->inscrits[] = $inscrits;
     }
 
     /**
@@ -325,6 +327,12 @@ class Sortie
         return $this->getNom();
     }
 
-
+    public  function addSortieParticipant(Sortie $sortie)
+    {
+        $this->inscrits[] = $sortie;
+    }
+    public function __construct(){
+        $this->inscrits = new ArrayCollection();
+    }
 
 }

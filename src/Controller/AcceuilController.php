@@ -6,7 +6,6 @@ use App\DataSearch\SearchData;
 use App\Entity\Sortie;
 use App\Entity\Etat;
 use App\Form\AnnulerType;
-use App\Form\InscriptionType;
 use App\Form\SearchForm;
 use App\Repository\SortieRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -23,7 +22,7 @@ class AcceuilController extends AbstractController
      * @param SortieRepository $repository
      * @return Response
      */
-    public function index(SortieRepository $repository,EntityManagerInterface $em, Request $request): Response
+  public function index(SortieRepository $repository,EntityManagerInterface $em, Request $request): Response
     {
         $data = new SearchData();
         $UserInSession= $this->getUser();
@@ -93,24 +92,18 @@ class AcceuilController extends AbstractController
         ]);
     }
 
+    /**
+     * @Route("/sortie/{id}", name="inscrit", requirements={"id":"\d+"})
+     */
     public function inscription(int $id,EntityManagerInterface $entityManager,Request $request)
     {
-        $repository =$entityManager->getRepository(Sortie::class);
-        $participant = $repository->findOneBy(['username'=> $this->getUser()->getUsername()]);
-        $sortie = $repository->find($id);
+        $repository =$entityManager->getRepository(Sortie::class)->findOneBy($id);
 
-        $sortieForm = $this->createForm(InscriptionType::class, $sortie);
-        $sortieForm->handleRequest($request);
+        $repository->addSortieParticipant($repository);
 
-        if ($sortieForm->isSubmitted() && $sortieForm->isValid() && $sortieForm->get('inscrit')->isClicked()){
-            $sortie->setInscrits($participant);
+        $entityManager->persist($repository);
+        $entityManager->flush();
 
-            $entityManager->persist($sortie);
-            $entityManager->flush();
-        return $this->redirectToRoute('accueil');
-        }
-        return $this->render('sorties/annuler.html.twig', [
-            'sortie' => $sortie,
-        ]);
+        return $this->render('accueil/index.html.twig');
     }
 }

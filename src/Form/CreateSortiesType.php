@@ -50,7 +50,6 @@ class CreateSortiesType extends AbstractType
             ->add('lieu',EntityType::class,[
                 'class' => Lieu::class,
             ])
-            //->add('inscrits',HiddenType::class)
             ->add('save', SubmitType::class,['label'=>'Enregistrer'])
             ->add('add', SubmitType::class, ['label'=>'Publier la sortie'])
         ;
