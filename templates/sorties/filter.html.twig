@@ -1,12 +1,16 @@
-<h3>Filtrer les sorties</h3>
-{{ form_start(form) }}
-<div class="filter-champ-recherche">
-    {{  form_row(form.r) }}
-    {{ form_row(form.site) }}
+<div class="filter-page">
+    <h3>Filtrer les sorties</h3>
+    {{ form_start(form) }}
+        <div class="filter-recherche">
+            <div class="filter-champ-recherche">
+                {{  form_row(form.r) }}
+                {{ form_row(form.site) }}
+            </div>
+            <div class="filter-checkbox">
+                {{ form_row(form.participants) }}
+                {{ form_row(form.organisateurs) }}
+            </div>
+        </div>
+    <div class="filter-btn"><button type="'submit" >Rechercher</button></div>
+    {{ form_end (form)}}
 </div>
-<div class="filter-checkbox">
-    {{ form_row(form.participants) }}
-    {{ form_row(form.organisateurs) }}
-</div>
-<button  type="'submit" class="btn btn-primary w-100">Rechercher</button>
-{{ form_end (form)}}
