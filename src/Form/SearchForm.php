@@ -27,7 +27,6 @@ class SearchForm extends AbstractType
             ->add('r', TextType::class,[
                     'label' => 'Le nom de la sortie contient : ',
                     'required' => false,
-
                     'attr' => [
                         'placeHolder' => 'Rechercher'
                     ]

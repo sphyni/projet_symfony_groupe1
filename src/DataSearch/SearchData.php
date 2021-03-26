@@ -9,7 +9,7 @@ class SearchData
     /**
      * @var string
      */
-    public $r ='';
+    public $r ;
 
     /**
      * @var boolean

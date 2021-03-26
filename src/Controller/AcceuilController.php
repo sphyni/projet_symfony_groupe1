@@ -23,7 +23,7 @@ class AcceuilController extends AbstractController
      * @param SortieRepository $repository
      * @return Response
      */
-    public function index(SortieRepository $repository,EntityManagerInterface $em, Request $request): Response
+  public function index(SortieRepository $repository,EntityManagerInterface $em, Request $request): Response
     {
         $data = new SearchData();
         $UserInSession= $this->getUser();
