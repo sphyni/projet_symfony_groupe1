@@ -13,16 +13,11 @@
       Date du jour : {{ "now"|date('d-m-y')}} <br>
       Participant : {{ app.user.username }}
     </div>
+    <br>
     <div class="accueil">
-
         {% include 'sorties/filter.html.twig' with {form: form} only%}
-
-        <h1 id="index-h1">Sorties</h1>
-
         <div class="index-table">
             <table>
-                <cpation>Liste de Sorties</cpation>
-                <colgroup span="8" class="columns"></colgroup>
                 <thead>
                     <tr>
                         <th>Nom de la sortie</th>
@@ -41,7 +36,7 @@
                         <td>{{ sortie.getNom() }}</td>
                         <td>{{ sortie.getDateHeureDebut()|date('d-m-y  h:i') }}</td>
                         <td>{{ sortie.getDateLimiteInscription()|date('d-m-y')}}</td>
-                        <td>/{{ sortie.getNbInscriptionsMax() }}</td>
+                        <td>{{ sortie.getInscrits()|length }} / {{ sortie.getNbInscriptionsMax() }}</td>
                         <td>{{ sortie.etat().getLibelle() }}</td>
                         <td>X</td>
                         <td>{{ sortie.participants().getNom() }}</td>
@@ -50,8 +45,10 @@
                             {% if(sortie.participants().getUsername() == app.user.username) %}
                                 <a href={{ path('annuler',{"id":sortie.getId()}) }}>Annuler</a>
                             {% endif %}
-                            {%  if ( sortie.etat().getLibelle()  == 'Ouvert' and sortie.getDateLimiteInscription()|date('d-m-y') < "now"|date('d-m-y') )%}
-                                <button type="submit" value="inscrit" id="inscrit">Inscrit</button>
+                            {%  if ( sortie.etat().getLibelle()  == 'Ouvert'
+                                and sortie.getDateLimiteInscription()|date('d-m-y') < "now"|date('d-m-y')
+                                and  sortie.getInscrits()|length  < sortie.getNbInscriptionsMax() )%}
+                                <a href={{ path('inscrit',{"id":sortie.getId()}) }} >Inscrit</a>
                             {% endif %}
                         </td>
                     </tr>

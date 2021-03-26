@@ -61,7 +61,6 @@ class SortieRepository extends ServiceEntityRepository
             $query = $query
                 ->andWhere(':p NOT MEMBER OF o.participants')
                 ->setParameter('p', $userInSession);
-
         }
         return $query->getQuery()->getResult();
     }

@@ -24,13 +24,12 @@ class VillesController extends AbstractController
     public function createVille(Request $request,EntityManagerInterface $entityManager): Response
     {
         $ville = new Ville;
-        $villeForm     = $this->createForm(CreateVilleType::class, $ville);
 
+        $villeForm     = $this->createForm(CreateVilleType::class, $ville);
         $villeForm->handleRequest($request);
 
 
         if ($villeForm->isSubmitted() && $villeForm->isValid()){
-
 
             $entityManager->persist($ville);
             $entityManager->flush();
@@ -39,8 +38,6 @@ class VillesController extends AbstractController
 
             return $this->redirectToRoute('lieu');
         }
-
-
         return $this->render('villes/create-ville.html.twig', [
             'villeForm'   => $villeForm->createView(),
 
@@ -52,17 +49,14 @@ class VillesController extends AbstractController
      */
     public function listAnCreate(Request $request, EntityManagerInterface $em, EntityManagerInterface $entityManager): response
     {
-
-
         $repository = $em->getRepository(Ville::class);
         $allVilles = $repository->findAll();
 
         $ville = new Ville;
-        $villeForm = $this->createForm(GestionVilleType::class, $ville);
-//dd($site);
 
+        $villeForm = $this->createForm(GestionVilleType::class, $ville);
         $villeForm->handleRequest($request);
-//dd($site);
+
         if ($villeForm->isSubmitted() && $villeForm->isValid()) {
             $entityManager->persist($ville);
             $entityManager->flush();
@@ -70,7 +64,6 @@ class VillesController extends AbstractController
             $this->addFlash('success', 'ville ajouté');
             return  $this->redirectToRoute('villes');
         }
-//dd($site);
         return $this->render('villes/list.html.twig', [
             'villes' => $allVilles,
             'controller_name' => 'VillesController',
@@ -84,6 +77,7 @@ class VillesController extends AbstractController
     public function delete(int $id){
         $entityManager = $this->getDoctrine()->getManager();
         $ville = $this->getDoctrine()->getRepository(\Proxies\__CG__\App\Entity\Ville::class);
+
         $ville=$ville->find($id);
 
         $entityManager->remove($ville);
@@ -103,6 +97,7 @@ class VillesController extends AbstractController
 
         $villeForm = $this->createForm(GestionVilleType::class, $ville);
         $villeForm->handleRequest($request);
+
         $allVille = $repository->findAll();
 
         if ($villeForm->isSubmitted() && $villeForm->isValid()) {

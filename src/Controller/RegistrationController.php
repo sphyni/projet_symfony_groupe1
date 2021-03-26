@@ -3,9 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Participant;
-use App\Entity\User;
 use App\Form\ParticipantFormType;
-use App\Form\RegistrationFormType;
 use App\Security\LoginFormAuthenticator;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
