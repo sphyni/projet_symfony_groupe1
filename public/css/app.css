@@ -1,7 +1,67 @@
 /**
 Style de la page en css
  */
+*{
+    box-sizing: border-box;
+    margin: 0;
+}
+img{
+    width: 350px;
+    height: 350px;
+}
+body{
+    padding: 0;
+    padding: 1em;
+    height: auto;
+    width: auto;
+}
+.index-page{
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+}
 
+.index-user_name{
+   text-align: right;
+   font-weight: bold;
+    padding: 20px;
+    margin-right: 200px;
+
+}
+.filter-page{
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    margin-left: 200px;
+    margin-bottom: 20px;
+    padding: 0px;
+}
+h3{
+margin: 20px;
+}
+.filter-recherche{
+    display: flex;
+    flex-direction: row;
+}
+.filter-champ-recherche{
+    margin-left: 30px;
+    margin-right: 0px;
+    padding: 0px;
+    margin-bottom: 20px;
+    padding: 0px;
+}
+.filter-checkbox{
+    margin-left: 100px;
+    margin-right: 0px;
+    padding: 0px;
+    margin-bottom: 20px;
+    padding: 0px;
+}
+.filter-btn{
+}
+.accueil{
+
+}
 div#logs{
     position : fixed; left : 10px; top : 10px;
 
