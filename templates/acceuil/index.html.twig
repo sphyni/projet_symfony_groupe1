@@ -9,6 +9,7 @@
 {% endblock %}
 
 {% block main %}
+    <div class="index-page">
     <div class="index-user_name">
       Date du jour : {{ "now"|date('d-m-y')}} <br>
       Participant : {{ app.user.username }}
@@ -57,5 +58,6 @@
             </table>
         </div>
         <button class="index-buton"><a href="{{ path('sorties') }}">Créer une sortie</a></button>
+    </div>
     </div>
 {% endblock %}
